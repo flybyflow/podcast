@@ -11,25 +11,14 @@ import AVKit
 
 class AudioPlayerView: UIView {
     
-   
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         observeAudioStarting()
         observeCurrentTime()
-        
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
-        addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleSwipeUp)))
+        setupGestures()
     }
-    
-    @objc func handleSwipeUp(gesture: UIPanGestureRecognizer){
-        if gesture.state == .changed {
-            print(gesture.translation(in: self).y)
-        } else if gesture.state == .ended {
-            
-        }
-    }
-    
+
     static func initFromNib() -> AudioPlayerView {
         return Bundle.main.loadNibNamed("audioPlayer", owner: self, options: nil)?.first as! AudioPlayerView
     }
@@ -43,20 +32,14 @@ class AudioPlayerView: UIView {
             authorLabel.text = episode.author
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-            
-            
-            
-            
+              
             guard let url = URL(string: episode.imageUrlString ?? "") else {return}
             imageView.sd_setImage(with: url)
             miniImageView.sd_setImage(with: url)
             
-            
         }
     }
-    
-    
-    
+     
     func observeCurrentTime() {
         let interval = CMTimeMake(value: 1,timescale: 1)
         player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] (time) in
@@ -106,8 +89,8 @@ class AudioPlayerView: UIView {
     }
     
     func updateTotalTimeLabel() {
-            totalTimeLabel.text = player.currentItem?.duration.toDisplayString()
-                ?? CMTimeMake(value: 1, timescale: 1).toDisplayString()
+        totalTimeLabel.text = player.currentItem?.duration.toDisplayString()
+            ?? CMTimeMake(value: 1, timescale: 1).toDisplayString()
     }
     
     func updateCurrentTimeLabel(currentTime: CMTime) {
@@ -142,7 +125,7 @@ class AudioPlayerView: UIView {
     
     @IBOutlet var playPauseButton: UIButton!
     
-
+    
     @IBOutlet weak var miniImageView: UIImageView!
     @IBOutlet weak var miniPlayPauseButton: UIButton!
     @IBOutlet weak var miniNameLabel: UILabel!
@@ -186,7 +169,7 @@ class AudioPlayerView: UIView {
             guard var fileLocation = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
             
             fileLocation.appendPathComponent(fileUrl)
-    
+            
             let playerItem = AVPlayerItem(url: fileLocation)
             player.replaceCurrentItem(with: playerItem)
             player.play()
@@ -204,14 +187,9 @@ class AudioPlayerView: UIView {
         
     }
     
-    @objc func handleTapMaximize() {
-        let mainTabController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-        mainTabController?.maximizePlayer()
-    }
     
     @IBAction func didTapDismissBtn(_ sender: Any) {
-        let mainTabController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
-        mainTabController?.minimizePlayer()
+        UIApplication.mainTabBarController()?.minimizePlayer()
     }
     
     @IBAction func didTapPlayPauseBtn(_ sender: Any) {
@@ -231,12 +209,3 @@ class AudioPlayerView: UIView {
     
 }
 
-// MARK: - MiniPlayer
-
-extension AudioPlayerView {
-    
-    
-    
-    
-    
-}

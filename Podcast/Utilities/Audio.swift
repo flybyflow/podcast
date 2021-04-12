@@ -12,7 +12,7 @@ class Audio {
     private init() {}
     
     static func loadAudioPlayer(episode: Episode) {
-        let mainTabController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        let mainTabController = UIApplication.mainTabBarController()
         mainTabController?.audioPlayerView.episode = episode
         mainTabController?.maximizePlayer()
     }

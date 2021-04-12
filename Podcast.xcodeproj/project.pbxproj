@@ -24,6 +24,8 @@
 		CDC3F4E325C8D60B00C0C868 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3F4E225C8D60B00C0C868 /* PodcastCell.swift */; };
 		CDC4788E25EB3AC700FB6058 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC4788D25EB3AC700FB6058 /* AudioPlayerView.swift */; };
 		CDCC48B725EDB8B9004CF392 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCC48B625EDB8B9004CF392 /* NetworkManager.swift */; };
+		CDDCAF312622006600FA3F4B /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDCAF302622006600FA3F4B /* UIApplication.swift */; };
+		CDDCAF342622017700FA3F4B /* AudioPlayerView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDCAF332622017700FA3F4B /* AudioPlayerView+Gestures.swift */; };
 		CDE7C48725C79E5B002323C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7C48625C79E5B002323C2 /* AppDelegate.swift */; };
 		CDE7C48925C79E5B002323C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7C48825C79E5B002323C2 /* SceneDelegate.swift */; };
 		CDE7C48E25C79E5B002323C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDE7C48C25C79E5B002323C2 /* Main.storyboard */; };
@@ -55,6 +57,8 @@
 		CDC4788D25EB3AC700FB6058 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		CDCC48B125ED3ACD004CF392 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CDCC48B625EDB8B9004CF392 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		CDDCAF302622006600FA3F4B /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		CDDCAF332622017700FA3F4B /* AudioPlayerView+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerView+Gestures.swift"; sourceTree = "<group>"; };
 		CDE7C48325C79E5B002323C2 /* Podcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDE7C48625C79E5B002323C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDE7C48825C79E5B002323C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 			children = (
 				CDA3029825EC413B003E08A5 /* CMTime.swift */,
 				CDA82C2D25CC57E700546AAF /* String.swift */,
+				CDDCAF302622006600FA3F4B /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 				CD45DB4825E55B1C00AE907E /* audioPlayer.xib */,
 				CDA82C2525CC2B0700546AAF /* EpisodeCell.xib */,
 				CDC4788D25EB3AC700FB6058 /* AudioPlayerView.swift */,
+				CDDCAF332622017700FA3F4B /* AudioPlayerView+Gestures.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -339,6 +345,7 @@
 				CDA82C2E25CC57E700546AAF /* String.swift in Sources */,
 				CDE7C4A325C852B3002323C2 /* SearchNavController.swift in Sources */,
 				CDA3029925EC413B003E08A5 /* CMTime.swift in Sources */,
+				CDDCAF312622006600FA3F4B /* UIApplication.swift in Sources */,
 				CDA82C2625CC2B0700546AAF /* EpisodeCell.swift in Sources */,
 				CDE7C48725C79E5B002323C2 /* AppDelegate.swift in Sources */,
 				CDA82C2B25CC38E400546AAF /* Episode.swift in Sources */,
@@ -349,6 +356,7 @@
 				CDC4788E25EB3AC700FB6058 /* AudioPlayerView.swift in Sources */,
 				CDE7C48925C79E5B002323C2 /* SceneDelegate.swift in Sources */,
 				CDA82C1A25C9A3B000546AAF /* EpisodesController.swift in Sources */,
+				CDDCAF342622017700FA3F4B /* AudioPlayerView+Gestures.swift in Sources */,
 				CDA3029C25ECB5C8003E08A5 /* DownloadsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

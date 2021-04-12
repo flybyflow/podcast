@@ -23,6 +23,7 @@ class MainTabBarController: UITabBarController {
      
     var maximizedTopAnchorConstraint: NSLayoutConstraint!
     var mimizedTopAnchorConstraint: NSLayoutConstraint!
+    var bottomAnchorConstraint: NSLayoutConstraint!
     
     private func setupPlayerDetailsView() {
         
@@ -36,7 +37,8 @@ class MainTabBarController: UITabBarController {
 //        mimizedTopAnchorConstraint.isActive = true
         maximizedTopAnchorConstraint.isActive = true
         
-        audioPlayerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        bottomAnchorConstraint = audioPlayerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height)
+        bottomAnchorConstraint.isActive = true
         audioPlayerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         audioPlayerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
@@ -44,6 +46,8 @@ class MainTabBarController: UITabBarController {
     @objc func minimizePlayer() {
         self.mimizedTopAnchorConstraint.isActive = true
         self.maximizedTopAnchorConstraint.isActive = false
+        self.bottomAnchorConstraint.constant = view.frame.height
+        
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut) {
             self.view.layoutIfNeeded()
             self.tabBar.transform = .identity
@@ -55,6 +59,7 @@ class MainTabBarController: UITabBarController {
         self.maximizedTopAnchorConstraint.isActive = true
         self.maximizedTopAnchorConstraint.constant = 0
         self.mimizedTopAnchorConstraint.isActive = false
+        self.bottomAnchorConstraint.constant = 0
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut) {
             self.view.layoutIfNeeded()
