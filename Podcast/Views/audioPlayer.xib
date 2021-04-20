@@ -111,7 +111,7 @@
                                 <constraint firstAttribute="width" constant="350" id="s51-XV-zb7"/>
                             </constraints>
                         </imageView>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="z7h-0a-gye">
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7h-0a-gye">
                             <rect key="frame" x="-2" y="406" width="378" height="41"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="kDd-d9-4wg"/>

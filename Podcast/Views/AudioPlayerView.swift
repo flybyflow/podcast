@@ -17,7 +17,36 @@ class AudioPlayerView: UIView {
         observeAudioStarting()
         observeCurrentTime()
         setupGestures()
-        setupBackgroundPlayback()
+        setupInterruptionObserver()
+    }
+    
+    private func setupInterruptionObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleInterruption), name: AVAudioSession.interruptionNotification, object: nil)
+    }
+    
+    @objc private func handleInterruption(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
+              let type = AVAudioSession.InterruptionType(rawValue: typeValue)
+        else {return}
+        
+        switch type {
+        case .began:
+            
+            handlePauseAudio()
+            
+        case .ended:
+            
+            guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt
+            else { return }
+            
+            let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
+            if options.contains(.shouldResume) {
+                handlePlayAudio()
+            }
+        @unknown default:
+            fatalError()
+        }
     }
     
     private func setupBackgroundInfo() {
@@ -40,10 +69,13 @@ class AudioPlayerView: UIView {
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
     
-    private func setLockScreenElapsedTime() {
-        let elapsedTime = CMTimeGetSeconds(player.currentItem?.currentTime() ?? CMTime())
+    private func setLockScreenElapsedTime(playbackRate: Float?) {
+        let elapsedTime = CMTimeGetSeconds(player.currentTime())
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = elapsedTime
+        if let playbackRate = playbackRate {
+            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = playbackRate
+        }
     }
     
     private func setupBackgroundPlayback() {
@@ -59,25 +91,21 @@ class AudioPlayerView: UIView {
         
         commandCenter.playCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
             self.handlePlayAudio()
-            self.setLockScreenElapsedTime()
             return .success
         }
         commandCenter.pauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
             self.handlePauseAudio()
-            self.setLockScreenElapsedTime()
             return .success
         }
         commandCenter.togglePlayPauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
             self.didTapPlayPauseBtn()
-            self.setLockScreenElapsedTime()
             return .success
         }
-        
-        commandCenter.nextTrackCommand.addTarget { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
+        commandCenter.nextTrackCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
             self.changeTrack(moveForward: true)
             return .success
         }
-        commandCenter.previousTrackCommand.addTarget { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
+        commandCenter.previousTrackCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
             self.changeTrack(moveForward: false)
             return .success
         }
@@ -100,13 +128,12 @@ class AudioPlayerView: UIView {
     var playlistEpisodes = [Episode]()
     var episode: Episode! {
         didSet {
-            playEpisode()
+            setupBackgroundPlayback()
+            fetchEpisode()
             
             nameLabel.text = episode.name
             miniNameLabel.text = episode.name
             authorLabel.text = episode.author
-            playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-            miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
               
             if let url = URL(string: episode.imageUrlString ?? "") {
                 imageView.sd_setImage(with: url)
@@ -129,7 +156,6 @@ class AudioPlayerView: UIView {
         let time = CMTimeMake(value: 1, timescale: 1)
         let times = [NSValue(time: time)]
         player.addBoundaryTimeObserver(forTimes: times, queue: .main) { [weak self] in
-            //Enlarge Image
             self?.enlargeEpisodeImageView()
         }
     }
@@ -177,7 +203,7 @@ class AudioPlayerView: UIView {
         let modifierInSeconds = CMTimeMake(value: Int64(value), timescale: 1)
         let seekTime = CMTimeAdd(player.currentTime(), modifierInSeconds)
         player.seek(to: seekTime)
-        setLockScreenElapsedTime()
+        setLockScreenElapsedTime(playbackRate: nil)
     }
     
     private let imageViewtransformValue = CGAffineTransform(scaleX: 0.7, y: 0.7)
@@ -213,11 +239,7 @@ class AudioPlayerView: UIView {
         let seekTimeInSeconds = totalDurationInSeconds * Float64(percentage)
         let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1)
         player.seek(to: seekTime)
-        
-        setLockScreenElapsedTime()
-        
-        player.play()
-        playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        handlePlayAudio()
     }
     
     @IBAction func handleFastForward() {
@@ -237,8 +259,9 @@ class AudioPlayerView: UIView {
         return player
     }()
     
-    func playEpisode() {
+    func fetchEpisode() {
         
+        // Attempt to Play Episode from Local File
         if episode.localAudioUrl != nil {
             
             guard let fileUrl = URL(string: episode.localAudioUrl ?? "")?.lastPathComponent else { return }
@@ -248,14 +271,15 @@ class AudioPlayerView: UIView {
             
             let playerItem = AVPlayerItem(url: fileLocation)
             player.replaceCurrentItem(with: playerItem)
-            player.play()
             
-            print("Playing with local file at ", fileLocation)
-        } else {
+            handlePlayAudio()
+        }
+        // Else Fetch From Network
+        else {
             guard let url = URL(string: episode.audioUrl) else {return}
             let playerItem = AVPlayerItem(url: url)
             player.replaceCurrentItem(with: playerItem)
-            player.play()
+            handlePlayAudio()
         }
     }
     
@@ -268,6 +292,7 @@ class AudioPlayerView: UIView {
         playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         enlargeEpisodeImageView()
+        setLockScreenElapsedTime(playbackRate: 1.0)
     }
     
     fileprivate func handlePauseAudio() {
@@ -275,6 +300,7 @@ class AudioPlayerView: UIView {
         playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         miniPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         minimizeEpisodeImageView()
+        setLockScreenElapsedTime(playbackRate: 0)
     }
     
     @IBAction func didTapPlayPauseBtn() {
