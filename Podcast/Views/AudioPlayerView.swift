@@ -20,12 +20,75 @@ class AudioPlayerView: UIView {
         setupBackgroundPlayback()
     }
     
+    // TODO: - Finish Setting Up Push Notifications
+    
+    private func setupBackgroundInfo() {
+        var nowPlayingInfo = [String:Any]()
+
+        nowPlayingInfo =  [MPMediaItemPropertyArtist: episode.author,
+                           MPMediaItemPropertyTitle: episode.name]
+
+        if let image = imageView.image {
+            let artwork = MPMediaItemArtwork(boundsSize: imageView.bounds.size) { (_) -> UIImage in
+                return image
+            }
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
+        }
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+    private func setupBackgroundPlayback() {
+        try? AVAudioSession.sharedInstance().setActive(true)
+        try? AVAudioSession.sharedInstance().setCategory(.playback)
+        
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.togglePlayPauseCommand.isEnabled = true
+        
+        commandCenter.playCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.handlePlayAudio()
+            self.setLockScreenElapsedTime()
+            return .success
+        }
+        commandCenter.pauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.handlePauseAudio()
+            self.setLockScreenElapsedTime()
+            return .success
+        }
+        commandCenter.togglePlayPauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.didTapPlayPauseBtn()
+            self.setLockScreenElapsedTime()
+            return .success
+        }
+        
+        commandCenter.nextTrackCommand.addTarget { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
+            self.changeTrack(moveForward: true)
+            return .success
+        }
+        commandCenter.previousTrackCommand.addTarget { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
+            self.changeTrack(moveForward: false)
+            return .success
+        }
+    }
+    
+    fileprivate func changeTrack(moveForward: Bool) {
+        let offset = moveForward ? 1 : playlistEpisodes.count - 1
+        if playlistEpisodes.count == 0 {return}
+        let currentEpisodeIndex = playlistEpisodes.firstIndex { (episode) -> Bool in
+            return self.episode.name == episode.name
+        }
+        guard let index = currentEpisodeIndex else {return}
+        self.episode = playlistEpisodes[(index + offset) % playlistEpisodes.count]
     }
 
     static func initFromNib() -> AudioPlayerView {
         return Bundle.main.loadNibNamed("audioPlayer", owner: self, options: nil)?.first as! AudioPlayerView
     }
     
+    var playlistEpisodes = [Episode]()
     var episode: Episode! {
         didSet {
             playEpisode()
@@ -36,10 +99,11 @@ class AudioPlayerView: UIView {
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
               
-            guard let url = URL(string: episode.imageUrlString ?? "") else {return}
-            imageView.sd_setImage(with: url)
-            miniImageView.sd_setImage(with: url)
-            
+            if let url = URL(string: episode.imageUrlString ?? "") {
+                imageView.sd_setImage(with: url)
+                miniImageView.sd_setImage(with: url)
+            }
+            setupBackgroundInfo()
         }
     }
      
@@ -104,6 +168,7 @@ class AudioPlayerView: UIView {
         let modifierInSeconds = CMTimeMake(value: Int64(value), timescale: 1)
         let seekTime = CMTimeAdd(player.currentTime(), modifierInSeconds)
         player.seek(to: seekTime)
+        setLockScreenElapsedTime()
     }
     
     private let imageViewtransformValue = CGAffineTransform(scaleX: 0.7, y: 0.7)
@@ -128,12 +193,9 @@ class AudioPlayerView: UIView {
     
     @IBOutlet var playPauseButton: UIButton!
     
-    
     @IBOutlet weak var miniImageView: UIImageView!
     @IBOutlet weak var miniPlayPauseButton: UIButton!
     @IBOutlet weak var miniNameLabel: UILabel!
-    
-    
     
     @IBAction func handleCurrentTimeChange() {
         let percentage = timeSlider.value
@@ -142,6 +204,8 @@ class AudioPlayerView: UIView {
         let seekTimeInSeconds = totalDurationInSeconds * Float64(percentage)
         let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1)
         player.seek(to: seekTime)
+        
+        setLockScreenElapsedTime()
         
         player.play()
         playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
@@ -184,31 +248,32 @@ class AudioPlayerView: UIView {
             player.replaceCurrentItem(with: playerItem)
             player.play()
         }
-        
-        
-        
-        
     }
-    
     
     @IBAction func didTapDismissBtn(_ sender: Any) {
         UIApplication.mainTabBarController()?.minimizePlayer()
     }
     
-    @IBAction func didTapPlayPauseBtn(_ sender: Any) {
-        if player.timeControlStatus == .paused {
-            player.play()
-            playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-            miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-            enlargeEpisodeImageView()
-        } else {
-            player.pause()
-            playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
-            miniPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
-            minimizeEpisodeImageView()
-        }
-        
+    fileprivate func handlePlayAudio() {
+        player.play()
+        playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        enlargeEpisodeImageView()
     }
     
+    fileprivate func handlePauseAudio() {
+        player.pause()
+        playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        miniPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        minimizeEpisodeImageView()
+    }
+    
+    @IBAction func didTapPlayPauseBtn() {
+        if player.timeControlStatus == .paused {
+            handlePlayAudio()
+        } else {
+            handlePauseAudio()
+        }
+    }
 }
 

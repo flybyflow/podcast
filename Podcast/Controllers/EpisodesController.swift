@@ -75,7 +75,7 @@ class EpisodesVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let episode = episodes[indexPath.row]
         
-        Audio.loadAudioPlayer(episode: episode)
+        Audio.loadAudioPlayer(episode: episode, playlistEpisodes: episodes)
         
     }
 

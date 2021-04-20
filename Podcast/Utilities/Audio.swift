@@ -11,9 +11,10 @@ class Audio {
     
     private init() {}
     
-    static func loadAudioPlayer(episode: Episode) {
+    static func loadAudioPlayer(episode: Episode, playlistEpisodes: [Episode] = []) {
         let mainTabController = UIApplication.mainTabBarController()
         mainTabController?.audioPlayerView.episode = episode
+        mainTabController?.audioPlayerView.playlistEpisodes = playlistEpisodes
         mainTabController?.maximizePlayer()
     }
     

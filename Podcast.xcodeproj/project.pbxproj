@@ -110,6 +110,13 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		CD5B4897262A1EB700ECA168 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CD5FBE7025ECC1570032253E /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +218,7 @@
 				CDA82C2225CC2ACC00546AAF /* Controllers */,
 				CD5FBE7025ECC1570032253E /* CoreData */,
 				CD95933A25C88D4600AC7F3B /* Api */,
+				CD5B4897262A1EB700ECA168 /* ViewModel */,
 				CD95933325C8714600AC7F3B /* Models */,
 				CDC3F4DE25C8995400C0C868 /* Views */,
 				CD4304EF25FD956200EABDEB /* Utilities */,
