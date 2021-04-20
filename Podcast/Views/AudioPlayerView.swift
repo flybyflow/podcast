@@ -20,8 +20,6 @@ class AudioPlayerView: UIView {
         setupBackgroundPlayback()
     }
     
-    // TODO: - Finish Setting Up Push Notifications
-    
     private func setupBackgroundInfo() {
         var nowPlayingInfo = [String:Any]()
 
