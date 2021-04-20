@@ -33,8 +33,19 @@ class AudioPlayerView: UIView {
             nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
         }
         
+        if let playbackDuration = player.currentItem?.asset.duration.seconds {
+            nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = playbackDuration
+        }
+        
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
+    
+    private func setLockScreenElapsedTime() {
+        let elapsedTime = CMTimeGetSeconds(player.currentItem?.currentTime() ?? CMTime())
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = elapsedTime
+    }
+    
     private func setupBackgroundPlayback() {
         try? AVAudioSession.sharedInstance().setActive(true)
         try? AVAudioSession.sharedInstance().setCategory(.playback)
