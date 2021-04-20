@@ -8,15 +8,18 @@
 import UIKit
 import SDWebImage
 import AVKit
+import MediaPlayer
 
 class AudioPlayerView: UIView {
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         observeAudioStarting()
         observeCurrentTime()
         setupGestures()
+        setupBackgroundPlayback()
+    }
+    
     }
 
     static func initFromNib() -> AudioPlayerView {
