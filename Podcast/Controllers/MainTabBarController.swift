@@ -13,9 +13,9 @@ class MainTabBarController: UITabBarController {
         tabBar.tintColor = .purple
         super.viewDidLoad()
         setupPlayerDetailsView()
-        
+                
         viewControllers = [generateControllers(name: "Search", with: SearchNavController()),
-                           generateControllers(name: "Favorites", with: UIViewController()),
+                           generateControllers(name: "Favorites", with: FavoritesController(collectionViewLayout: UICollectionViewFlowLayout())),
                            generateControllers(name: "Downloads", with: DownloadsController())]
     }
     
@@ -71,7 +71,7 @@ class MainTabBarController: UITabBarController {
     
     // MARK: - Helper Methods
     private func generateControllers(name: String,
-                                               with rootViewController: UIViewController) -> UIViewController {
+                                     with rootViewController: UIViewController) -> UIViewController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = name
         navController.tabBarItem.image = UIImage(named: name)
@@ -79,7 +79,6 @@ class MainTabBarController: UITabBarController {
         
         return navController
     }
-    
 }
 
 
