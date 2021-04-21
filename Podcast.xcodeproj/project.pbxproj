@@ -20,6 +20,8 @@
 		CDA82C2725CC2B0700546AAF /* EpisodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDA82C2525CC2B0700546AAF /* EpisodeCell.xib */; };
 		CDA82C2B25CC38E400546AAF /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA82C2A25CC38E400546AAF /* Episode.swift */; };
 		CDA82C2E25CC57E700546AAF /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA82C2D25CC57E700546AAF /* String.swift */; };
+		CDBEF0B526305D0F00B36EA8 /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBEF0B426305D0F00B36EA8 /* FavoritesController.swift */; };
+		CDBEF0B82630826800B36EA8 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBEF0B72630826800B36EA8 /* FavoritesCell.swift */; };
 		CDC3F4DB25C8994500C0C868 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3F4DA25C8994500C0C868 /* PodcastCell.xib */; };
 		CDC3F4E325C8D60B00C0C868 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3F4E225C8D60B00C0C868 /* PodcastCell.swift */; };
 		CDC4788E25EB3AC700FB6058 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC4788D25EB3AC700FB6058 /* AudioPlayerView.swift */; };
@@ -52,6 +54,8 @@
 		CDA82C2525CC2B0700546AAF /* EpisodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EpisodeCell.xib; sourceTree = "<group>"; };
 		CDA82C2A25CC38E400546AAF /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		CDA82C2D25CC57E700546AAF /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		CDBEF0B426305D0F00B36EA8 /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
+		CDBEF0B72630826800B36EA8 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		CDC3F4DA25C8994500C0C868 /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
 		CDC3F4E225C8D60B00C0C868 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
 		CDC4788D25EB3AC700FB6058 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				CDE7C49E25C79E70002323C2 /* MainTabBarController.swift */,
+				CDBEF0B426305D0F00B36EA8 /* FavoritesController.swift */,
 				CDE7C4A225C852B3002323C2 /* SearchNavController.swift */,
 				CDA82C1925C9A3B000546AAF /* EpisodesController.swift */,
 				CDA3029B25ECB5C8003E08A5 /* DownloadsController.swift */,
@@ -170,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				CDC3F4DA25C8994500C0C868 /* PodcastCell.xib */,
+				CDBEF0B72630826800B36EA8 /* FavoritesCell.swift */,
 				CDC3F4E225C8D60B00C0C868 /* PodcastCell.swift */,
 				CDA82C2425CC2B0700546AAF /* EpisodeCell.swift */,
 				CD45DB4825E55B1C00AE907E /* audioPlayer.xib */,
@@ -356,6 +362,7 @@
 				CDDCAF312622006600FA3F4B /* UIApplication.swift in Sources */,
 				CDA82C2625CC2B0700546AAF /* EpisodeCell.swift in Sources */,
 				CDE7C48725C79E5B002323C2 /* AppDelegate.swift in Sources */,
+				CDBEF0B82630826800B36EA8 /* FavoritesCell.swift in Sources */,
 				CDA82C2B25CC38E400546AAF /* Episode.swift in Sources */,
 				CD4304F125FD957600EABDEB /* Audio.swift in Sources */,
 				CDE7C49F25C79E71002323C2 /* MainTabBarController.swift in Sources */,
@@ -366,6 +373,7 @@
 				CDA82C1A25C9A3B000546AAF /* EpisodesController.swift in Sources */,
 				CDDCAF342622017700FA3F4B /* AudioPlayerView+Gestures.swift in Sources */,
 				CDA3029C25ECB5C8003E08A5 /* DownloadsController.swift in Sources */,
+				CDBEF0B526305D0F00B36EA8 /* FavoritesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

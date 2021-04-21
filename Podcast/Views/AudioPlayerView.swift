@@ -18,6 +18,7 @@ class AudioPlayerView: UIView {
         observeCurrentTime()
         setupGestures()
         setupInterruptionObserver()
+        setupBackgroundPlayback()
     }
     
     private func setupInterruptionObserver() {
@@ -52,9 +53,11 @@ class AudioPlayerView: UIView {
     private func setupBackgroundInfo() {
         var nowPlayingInfo = [String:Any]()
 
+        //Setting Strings
         nowPlayingInfo =  [MPMediaItemPropertyArtist: episode.author,
                            MPMediaItemPropertyTitle: episode.name]
 
+        //Setting Image
         if let image = imageView.image {
             let artwork = MPMediaItemArtwork(boundsSize: imageView.bounds.size) { (_) -> UIImage in
                 return image
@@ -62,14 +65,19 @@ class AudioPlayerView: UIView {
             nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
         }
         
+        //Setting Time
+        //..Duration
         if let playbackDuration = player.currentItem?.asset.duration.seconds {
             nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = playbackDuration
         }
+        //..Playback
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1.0
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
     
     private func setLockScreenElapsedTime(playbackRate: Float?) {
+        // MARK: - Find a way to capture Elapsed Time Accurately when seeking
         let elapsedTime = CMTimeGetSeconds(player.currentTime())
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = elapsedTime
@@ -79,7 +87,7 @@ class AudioPlayerView: UIView {
     }
     
     private func setupBackgroundPlayback() {
-        try? AVAudioSession.sharedInstance().setActive(true)
+        
         try? AVAudioSession.sharedInstance().setCategory(.playback)
         
         UIApplication.shared.beginReceivingRemoteControlEvents()
@@ -128,7 +136,6 @@ class AudioPlayerView: UIView {
     var playlistEpisodes = [Episode]()
     var episode: Episode! {
         didSet {
-            setupBackgroundPlayback()
             fetchEpisode()
             
             nameLabel.text = episode.name
@@ -140,6 +147,8 @@ class AudioPlayerView: UIView {
                 miniImageView.sd_setImage(with: url)
             }
             setupBackgroundInfo()
+            // Moved Here to Avoid Interrupting Audio Playback From another App on Launch
+            try? AVAudioSession.sharedInstance().setActive(true)
         }
     }
      
@@ -203,7 +212,10 @@ class AudioPlayerView: UIView {
         let modifierInSeconds = CMTimeMake(value: Int64(value), timescale: 1)
         let seekTime = CMTimeAdd(player.currentTime(), modifierInSeconds)
         player.seek(to: seekTime)
-        setLockScreenElapsedTime(playbackRate: nil)
+        // TODO: - Implement Proper Fix to Setting Elapsed Time Value
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            self?.setLockScreenElapsedTime(playbackRate: nil)
+        }
     }
     
     private let imageViewtransformValue = CGAffineTransform(scaleX: 0.7, y: 0.7)
@@ -239,7 +251,11 @@ class AudioPlayerView: UIView {
         let seekTimeInSeconds = totalDurationInSeconds * Float64(percentage)
         let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1)
         player.seek(to: seekTime)
-        handlePlayAudio()
+        
+        // TODO: - Implement Proper Fix to Setting Elapsed Time Value
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            self?.handlePlayAudio()
+        }
     }
     
     @IBAction func handleFastForward() {
