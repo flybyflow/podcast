@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Podcast: Decodable {
+struct Podcast: Codable, Hashable {
+    
     var name: String?
     var author: String?
     var episodeCount: Int?
@@ -22,5 +23,6 @@ struct Podcast: Decodable {
         case imagePath = "artworkUrl100"
         case feedUrlString = "feedUrl"
     }
-
 }
+
+

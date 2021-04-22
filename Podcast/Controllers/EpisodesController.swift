@@ -24,7 +24,21 @@ class EpisodesVC: UITableViewController {
         super.viewDidLoad()
         
         setupTableView()
-        
+        FetchEpisodesFromNetwork()
+        setupNavigationBarButtons()
+    }
+    
+    @objc func handleSaveFavorite() {
+        UserDefaults.standard.saveFavorite(podcast: podcast)
+    }
+    
+    // MARK: - Setup
+    
+    fileprivate func setupNavigationBarButtons() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(handleSaveFavorite))
+    }
+    
+    fileprivate func FetchEpisodesFromNetwork() {
         Api.shared.fetchEpisodes(with: podcast.feedUrlString,
                                  errorHandler: {
                                     DispatchQueue.main.async {
@@ -41,8 +55,6 @@ class EpisodesVC: UITableViewController {
                                     })
     }
     
-    // MARK: - Setup
-    
     fileprivate func setupTableView() {
         tableView.tableFooterView = UIView()
         let nib = UINib(nibName: "EpisodeCell", bundle: nil)
@@ -50,9 +62,9 @@ class EpisodesVC: UITableViewController {
     }
     
     private func displayNetworkingError() {
-            let alertController = UIAlertController(title: "Networking Error, \n Please Check Connection", message: nil, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            present(alertController, animated: true, completion: nil)
+        let alertController = UIAlertController(title: "Networking Error, \n Please Check Connection", message: nil, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
     
     // MARK: - UITableView
@@ -78,7 +90,7 @@ class EpisodesVC: UITableViewController {
         Audio.loadAudioPlayer(episode: episode, playlistEpisodes: episodes)
         
     }
-
+    
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let activityIndicator = UIActivityIndicatorView()
@@ -95,10 +107,10 @@ class EpisodesVC: UITableViewController {
         let downloadAction = UIContextualAction(style: .normal, title: "Download") { (_, _, _) in
             let episode = self.episodes[indexPath.row]
             Api.shared.download(episode, errorHandler: {
-                                    self.displayNetworkingError()
+                self.displayNetworkingError()
                 
             })
-
+            
         }
         downloadAction.backgroundColor = .purple
         

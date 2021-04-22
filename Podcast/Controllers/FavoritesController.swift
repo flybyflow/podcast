@@ -11,15 +11,48 @@ private let reuseIdentifier = "Cell"
 
 class FavoritesController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    var favoritePodcasts = UserDefaults.standard.fetchFavorites()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        collectionViewLayout.collectionView?.backgroundColor = .white
-        self.view.backgroundColor = .white
-
-        self.title = "Favorites"
-        self.collectionView!.register(FavoritesCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        setupCollectionView()
     }
+    
+    @objc func handleLongPressDelete(_ gesture: UIGestureRecognizer) {
+        
+        let tapLocation = gesture.location(in: collectionView)
+        
+        guard let indexPath = collectionView.indexPathForItem(at: tapLocation) else {return}
+        
+        let alertController = UIAlertController(title: "Remove from Favorites?", message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
+            self.removePodcast(at: indexPath)
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {_ in }))
+        
+        present(alertController, animated: true)
+    }
+    
+    private func removePodcast(at indexPath: IndexPath) {
+        let podcast = favoritePodcasts[indexPath.item]
+        UserDefaults.standard.deleteFavorite(podcast: podcast)
+        
+        favoritePodcasts.remove(at: indexPath.item)
+        collectionView.deleteItems(at: [indexPath])
+        collectionView.reloadData()
+    }
+    
+    private func setupCollectionView() {
+        collectionViewLayout.collectionView?.backgroundColor = .white
+        view.backgroundColor = .white
+
+        title = "Favorites"
+        collectionView!.register(FavoritePodcastCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        collectionView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressDelete)))
+    }
+    
+    // MARK: - CollectionView Methods
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
@@ -31,44 +64,14 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return favoritePodcasts.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FavoritesCell else {return UICollectionViewCell()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FavoritePodcastCell else {return UICollectionViewCell()}
+        cell.podcast = favoritePodcasts[indexPath.item]
         
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }

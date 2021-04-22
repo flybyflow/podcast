@@ -10,7 +10,8 @@
 		54447EE01CBE3F11AABF4B81 /* Pods_Podcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DB383A5E7A1039EC74611CA /* Pods_Podcast.framework */; };
 		CD2F621A25ECBFB300E04060 /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2F621925ECBFB300E04060 /* DatabaseHandler.swift */; };
 		CD4304F125FD957600EABDEB /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4304F025FD957600EABDEB /* Audio.swift */; };
-		CD45DB4925E55B1C00AE907E /* audioPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD45DB4825E55B1C00AE907E /* audioPlayer.xib */; };
+		CD45DB4925E55B1C00AE907E /* AudioPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD45DB4825E55B1C00AE907E /* AudioPlayer.xib */; };
+		CD6E2A612630B5E5004EF5CA /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6E2A602630B5E5004EF5CA /* UserDefaults.swift */; };
 		CD95933525C8716E00AC7F3B /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD95933425C8716E00AC7F3B /* SearchResults.swift */; };
 		CD95933825C88D3500AC7F3B /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD95933725C88D3500AC7F3B /* Api.swift */; };
 		CDA3029925EC413B003E08A5 /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3029825EC413B003E08A5 /* CMTime.swift */; };
@@ -21,7 +22,7 @@
 		CDA82C2B25CC38E400546AAF /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA82C2A25CC38E400546AAF /* Episode.swift */; };
 		CDA82C2E25CC57E700546AAF /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA82C2D25CC57E700546AAF /* String.swift */; };
 		CDBEF0B526305D0F00B36EA8 /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBEF0B426305D0F00B36EA8 /* FavoritesController.swift */; };
-		CDBEF0B82630826800B36EA8 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBEF0B72630826800B36EA8 /* FavoritesCell.swift */; };
+		CDBEF0B82630826800B36EA8 /* FavoritePodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBEF0B72630826800B36EA8 /* FavoritePodcastCell.swift */; };
 		CDC3F4DB25C8994500C0C868 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3F4DA25C8994500C0C868 /* PodcastCell.xib */; };
 		CDC3F4E325C8D60B00C0C868 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3F4E225C8D60B00C0C868 /* PodcastCell.swift */; };
 		CDC4788E25EB3AC700FB6058 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC4788D25EB3AC700FB6058 /* AudioPlayerView.swift */; };
@@ -44,7 +45,8 @@
 		9DB383A5E7A1039EC74611CA /* Pods_Podcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD2F621925ECBFB300E04060 /* DatabaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
 		CD4304F025FD957600EABDEB /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
-		CD45DB4825E55B1C00AE907E /* audioPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = audioPlayer.xib; sourceTree = "<group>"; };
+		CD45DB4825E55B1C00AE907E /* AudioPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioPlayer.xib; sourceTree = "<group>"; };
+		CD6E2A602630B5E5004EF5CA /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaults.swift; path = Podcast/Extensions/UserDefaults.swift; sourceTree = SOURCE_ROOT; };
 		CD95933425C8716E00AC7F3B /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		CD95933725C88D3500AC7F3B /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		CDA3029825EC413B003E08A5 /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
@@ -55,7 +57,7 @@
 		CDA82C2A25CC38E400546AAF /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		CDA82C2D25CC57E700546AAF /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		CDBEF0B426305D0F00B36EA8 /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
-		CDBEF0B72630826800B36EA8 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
+		CDBEF0B72630826800B36EA8 /* FavoritePodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePodcastCell.swift; sourceTree = "<group>"; };
 		CDC3F4DA25C8994500C0C868 /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
 		CDC3F4E225C8D60B00C0C868 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
 		CDC4788D25EB3AC700FB6058 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		CDA82C3025CC57EA00546AAF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CD6E2A602630B5E5004EF5CA /* UserDefaults.swift */,
 				CDA3029825EC413B003E08A5 /* CMTime.swift */,
 				CDA82C2D25CC57E700546AAF /* String.swift */,
 				CDDCAF302622006600FA3F4B /* UIApplication.swift */,
@@ -175,10 +178,10 @@
 			isa = PBXGroup;
 			children = (
 				CDC3F4DA25C8994500C0C868 /* PodcastCell.xib */,
-				CDBEF0B72630826800B36EA8 /* FavoritesCell.swift */,
+				CDBEF0B72630826800B36EA8 /* FavoritePodcastCell.swift */,
 				CDC3F4E225C8D60B00C0C868 /* PodcastCell.swift */,
 				CDA82C2425CC2B0700546AAF /* EpisodeCell.swift */,
-				CD45DB4825E55B1C00AE907E /* audioPlayer.xib */,
+				CD45DB4825E55B1C00AE907E /* AudioPlayer.xib */,
 				CDA82C2525CC2B0700546AAF /* EpisodeCell.xib */,
 				CDC4788D25EB3AC700FB6058 /* AudioPlayerView.swift */,
 				CDDCAF332622017700FA3F4B /* AudioPlayerView+Gestures.swift */,
@@ -294,7 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDE7C49625C79E5C002323C2 /* LaunchScreen.storyboard in Resources */,
-				CD45DB4925E55B1C00AE907E /* audioPlayer.xib in Resources */,
+				CD45DB4925E55B1C00AE907E /* AudioPlayer.xib in Resources */,
 				CDE7C49325C79E5C002323C2 /* Assets.xcassets in Resources */,
 				CDA82C2725CC2B0700546AAF /* EpisodeCell.xib in Resources */,
 				CDC3F4DB25C8994500C0C868 /* PodcastCell.xib in Resources */,
@@ -362,7 +365,7 @@
 				CDDCAF312622006600FA3F4B /* UIApplication.swift in Sources */,
 				CDA82C2625CC2B0700546AAF /* EpisodeCell.swift in Sources */,
 				CDE7C48725C79E5B002323C2 /* AppDelegate.swift in Sources */,
-				CDBEF0B82630826800B36EA8 /* FavoritesCell.swift in Sources */,
+				CDBEF0B82630826800B36EA8 /* FavoritePodcastCell.swift in Sources */,
 				CDA82C2B25CC38E400546AAF /* Episode.swift in Sources */,
 				CD4304F125FD957600EABDEB /* Audio.swift in Sources */,
 				CDE7C49F25C79E71002323C2 /* MainTabBarController.swift in Sources */,
@@ -371,6 +374,7 @@
 				CDC4788E25EB3AC700FB6058 /* AudioPlayerView.swift in Sources */,
 				CDE7C48925C79E5B002323C2 /* SceneDelegate.swift in Sources */,
 				CDA82C1A25C9A3B000546AAF /* EpisodesController.swift in Sources */,
+				CD6E2A612630B5E5004EF5CA /* UserDefaults.swift in Sources */,
 				CDDCAF342622017700FA3F4B /* AudioPlayerView+Gestures.swift in Sources */,
 				CDA3029C25ECB5C8003E08A5 /* DownloadsController.swift in Sources */,
 				CDBEF0B526305D0F00B36EA8 /* FavoritesController.swift in Sources */,

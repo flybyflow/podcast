@@ -7,21 +7,31 @@
 
 import UIKit
 
-class FavoritesCell: UICollectionViewCell {
+class FavoritePodcastCell: UICollectionViewCell {
     
-    let titleLabel =  UILabel()
-    let artistLabel = UILabel()
+    var podcast: Podcast! {
+        didSet {
+            nameLabel.text = podcast.name
+            authorLabel.text = podcast.author
+            
+            guard let url = URL(string: podcast.imagePath ?? "") else {return}
+            imageView.sd_setImage(with: url)
+        }
+    }
+    
+    let nameLabel =  UILabel()
+    let authorLabel = UILabel()
     let imageView = UIImageView(image: #imageLiteral(resourceName: "Favorites"))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        titleLabel.text = "Title"
-        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        artistLabel.text = "Artist"
-        artistLabel.font = UIFont.systemFont(ofSize: 12)
+        nameLabel.text = "Title"
+        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        authorLabel.text = "Artist"
+        authorLabel.font = UIFont.systemFont(ofSize: 12)
         
-        let stackView = UIStackView(arrangedSubviews: [imageView,titleLabel,artistLabel])
+        let stackView = UIStackView(arrangedSubviews: [imageView,nameLabel,authorLabel])
         self.addSubview(stackView)
         
         stackView.axis = .vertical

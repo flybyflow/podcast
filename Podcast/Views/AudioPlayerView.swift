@@ -130,7 +130,7 @@ class AudioPlayerView: UIView {
     }
 
     static func initFromNib() -> AudioPlayerView {
-        return Bundle.main.loadNibNamed("audioPlayer", owner: self, options: nil)?.first as! AudioPlayerView
+        return Bundle.main.loadNibNamed("AudioPlayer", owner: self, options: nil)?.first as! AudioPlayerView
     }
     
     var playlistEpisodes = [Episode]()
