@@ -11,7 +11,19 @@ private let reuseIdentifier = "Cell"
 
 class FavoritesController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var favoritePodcasts = UserDefaults.standard.fetchFavorites()
+    var favoritePodcasts = [Podcast]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //Reload Favorites
+        collectionView.reloadData()
+        favoritePodcasts = UserDefaults.standard.fetchFavorites()
+        
+        //Reset Badge 
+        guard let tabItems = UIApplication.mainTabBarController()?.tabBar.items else {return}
+        tabItems[1].badgeValue = nil
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +84,12 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
         cell.podcast = favoritePodcasts[indexPath.item]
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let episodesVC = EpisodesVC()
+        episodesVC.podcast = favoritePodcasts[indexPath.item]
+        navigationController?.pushViewController(episodesVC, animated: true)
     }
 
 }

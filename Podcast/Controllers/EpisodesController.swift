@@ -20,22 +20,41 @@ class EpisodesVC: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setupNavigationBarButtons()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTableView()
         FetchEpisodesFromNetwork()
-        setupNavigationBarButtons()
     }
     
-    @objc func handleSaveFavorite() {
+    @objc private func handleSaveFavorite() {
         UserDefaults.standard.saveFavorite(podcast: podcast)
+        
+        guard let tabItems = UIApplication.mainTabBarController()?.tabBar.items else {return}
+        tabItems[1].badgeValue = "New"
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "★", style: .plain, target: self, action: #selector(handleRemoveFavorite))
+    }
+    
+    @objc private func handleRemoveFavorite() {
+        UserDefaults.standard.deleteFavorite(podcast: podcast)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "☆", style: .plain, target: self, action: #selector(handleSaveFavorite))
     }
     
     // MARK: - Setup
     
     fileprivate func setupNavigationBarButtons() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(handleSaveFavorite))
+        let favoritePodcasts = UserDefaults.standard.fetchFavorites()
+        let isFavorited: Bool = favoritePodcasts.contains(podcast)
+        if isFavorited {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "★", style: .plain, target: self, action: #selector(handleRemoveFavorite))
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "☆", style: .plain, target: self, action: #selector(handleSaveFavorite))
+        }
     }
     
     fileprivate func FetchEpisodesFromNetwork() {
