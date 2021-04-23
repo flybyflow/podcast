@@ -81,24 +81,27 @@ class Api {
         }
     }
     
-    func download(_ selectedEpisode: Episode, errorHandler: @escaping  () -> Void ) {
+    func download(_ selectedEpisode: Episode, errorHandler: @escaping  (AFError) -> Void ) {
         //Fetch Media Object
         var episode = selectedEpisode
         let downloadRequest = DownloadRequest.suggestedDownloadDestination()
-        AF.download(episode.audioUrl, to: downloadRequest).downloadProgress { (Progress) in
+        AF.download(episode.audioUrl, to: downloadRequest)
+            .downloadProgress { (Progress) in
+                
             //TODO: - Display Download Progress
-        }.responseData { (response) in
-            
-            guard response.error == nil
+                
+        }
+        .responseData { (response) in
+            if let error = response.error {
+                errorHandler(error)
+            }
             else {
-                errorHandler()
-                return}
-            
-            let localUrl = response.fileURL?.absoluteString
-            episode.localAudioUrl = localUrl
-            
-            if DatabaseHandler.shared.findOrCreateEpisode(episode) == nil {
-                DownloadsController.downloadedEpisodes.append(episode)
+                let localUrl = response.fileURL?.absoluteString
+                episode.localAudioUrl = localUrl
+                
+                if DatabaseHandler.shared.findOrCreateEpisode(episode) == nil {
+                    DownloadsController.downloadedEpisodes.append(episode)
+                }
             }
         }
     }

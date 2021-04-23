@@ -91,5 +91,4 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
         episodesVC.podcast = favoritePodcasts[indexPath.item]
         navigationController?.pushViewController(episodesVC, animated: true)
     }
-
 }

@@ -15,7 +15,7 @@ class DownloadsController: UITableViewController {
     let cellIdentifier = "cell"
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         tableView.reloadData()
     }
     
@@ -23,7 +23,6 @@ class DownloadsController: UITableViewController {
         super.viewDidLoad()
         
         DownloadsController.downloadedEpisodes = DatabaseHandler.shared.fetchDownloadedEpisodes()
-        print("reloading Data")
         tableView.reloadData()
         
         self.title = "Downloads"

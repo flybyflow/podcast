@@ -7,6 +7,7 @@
 
 import UIKit
 import FeedKit
+import Alamofire
 
 class EpisodesVC: UITableViewController {
     
@@ -80,8 +81,19 @@ class EpisodesVC: UITableViewController {
         tableView.register(nib, forCellReuseIdentifier: cellId)
     }
     
-    private func displayNetworkingError() {
-        let alertController = UIAlertController(title: "Networking Error, \n Please Check Connection", message: nil, preferredStyle: .alert)
+    private func displayNetworkingError(with error: AFError? = nil) {
+        
+        var errorMessage: String
+        
+        if let destinationURL = error?.destinationURL,
+           FileManager.default.fileExists(atPath: destinationURL.path)
+           {
+            errorMessage = "File already downloaded"
+        } else {
+            errorMessage = error?.localizedDescription ?? "Networking Error, \n Please Check Connection"
+        }
+        
+        let alertController = UIAlertController(title: errorMessage, message: nil, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
@@ -125,9 +137,8 @@ class EpisodesVC: UITableViewController {
         
         let downloadAction = UIContextualAction(style: .normal, title: "Download") { (_, _, _) in
             let episode = self.episodes[indexPath.row]
-            Api.shared.download(episode, errorHandler: {
-                self.displayNetworkingError()
-                
+            Api.shared.download(episode, errorHandler: { error in
+                self.displayNetworkingError(with: error)
             })
             
         }
