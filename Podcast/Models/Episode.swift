@@ -10,7 +10,7 @@ import FeedKit
 import CoreData
 
 
-struct Episode {
+struct Episode: Equatable {
     let name: String
     let description: String
     let date: Date

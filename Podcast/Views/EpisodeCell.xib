@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -44,12 +44,21 @@
                         <color key="textColor" systemColor="secondaryLabelColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAe-eb-8o1">
+                        <rect key="frame" x="25" y="44" width="66.5" height="32.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <size key="shadowOffset" width="1" height="1"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="hYN-U4-kLi" secondAttribute="trailing" constant="8" id="2mG-cD-XWF"/>
+                    <constraint firstItem="bAe-eb-8o1" firstAttribute="centerX" secondItem="bOz-bd-YBI" secondAttribute="centerX" id="80E-wj-46s"/>
                     <constraint firstAttribute="trailing" secondItem="a8y-kD-rST" secondAttribute="trailing" constant="8" id="8d7-gA-nxe"/>
                     <constraint firstItem="oqr-da-Equ" firstAttribute="top" secondItem="hYN-U4-kLi" secondAttribute="bottom" id="D5s-oB-Aqs"/>
                     <constraint firstItem="a8y-kD-rST" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Ehl-r1-Fkl"/>
+                    <constraint firstItem="bAe-eb-8o1" firstAttribute="centerY" secondItem="bOz-bd-YBI" secondAttribute="centerY" id="LMq-Hv-cno"/>
                     <constraint firstItem="a8y-kD-rST" firstAttribute="leading" secondItem="bOz-bd-YBI" secondAttribute="trailing" constant="8" id="QPq-1a-mSG"/>
                     <constraint firstAttribute="trailing" secondItem="oqr-da-Equ" secondAttribute="trailing" constant="8" id="TY3-4K-zNa"/>
                     <constraint firstItem="hYN-U4-kLi" firstAttribute="top" secondItem="a8y-kD-rST" secondAttribute="bottom" constant="4" id="XCh-AP-X5B"/>
@@ -65,6 +74,7 @@
                 <outlet property="dateLabel" destination="a8y-kD-rST" id="xiF-Qs-COi"/>
                 <outlet property="descriptionLabel" destination="oqr-da-Equ" id="OU5-zJ-6b5"/>
                 <outlet property="episodeImageView" destination="bOz-bd-YBI" id="ETc-xI-7y0"/>
+                <outlet property="progressLabel" destination="bAe-eb-8o1" id="Md2-ma-SHI"/>
                 <outlet property="titleLabel" destination="hYN-U4-kLi" id="LwU-7O-hiX"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="103.79464285714285"/>

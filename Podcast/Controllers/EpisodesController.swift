@@ -135,8 +135,26 @@ class EpisodesVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
+        let episode = self.episodes[indexPath.row]
+        
+        //Check if Episode is Already Downloaded or Downloading
+        guard !DownloadsController.downloadedEpisodes.contains(where: { (ep) -> Bool in
+            ep.name == episode.name && ep.author == ep.author
+        }) else {return nil}
+        
         let downloadAction = UIContextualAction(style: .normal, title: "Download") { (_, _, _) in
-            let episode = self.episodes[indexPath.row]
+
+            //Check Again to Avoid potential Duplicate Bug??
+//            guard !DownloadsController.downloadedEpisodes.contains(where: { (ep) -> Bool in
+//                ep == episode
+//            }) else {return}
+            
+            //Immediately Append Episode
+            DownloadsController.downloadedEpisodes.append(episode)
+            
+            guard let tabItems = UIApplication.mainTabBarController()?.tabBar.items else {return}
+            tabItems[2].badgeValue = "New"
+            
             Api.shared.download(episode, errorHandler: { error in
                 self.displayNetworkingError(with: error)
             })

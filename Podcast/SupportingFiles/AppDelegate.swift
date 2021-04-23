@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // add network reachability observer on app start
-               NetworkManager.shared.startNetworkReachabilityObserver()
-        
+        NetworkManager.shared.startNetworkReachabilityObserver()
+        DownloadsController.downloadedEpisodes = DatabaseHandler.shared.fetchDownloadedEpisodes()
         return true
     }
 

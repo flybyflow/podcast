@@ -86,23 +86,34 @@ class Api {
         var episode = selectedEpisode
         let downloadRequest = DownloadRequest.suggestedDownloadDestination()
         AF.download(episode.audioUrl, to: downloadRequest)
-            .downloadProgress { (Progress) in
+            .downloadProgress { (progress) in
+                //TODO: - Display Download Progress
+                print(progress)
                 
-            //TODO: - Display Download Progress
+                NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title": episode.name,
+                                                                                                "progress":progress.fractionCompleted])
                 
-        }
-        .responseData { (response) in
-            if let error = response.error {
-                errorHandler(error)
             }
-            else {
-                let localUrl = response.fileURL?.absoluteString
-                episode.localAudioUrl = localUrl
-                
-                if DatabaseHandler.shared.findOrCreateEpisode(episode) == nil {
-                    DownloadsController.downloadedEpisodes.append(episode)
+            .responseData { (response) in
+                if let error = response.error {
+                    errorHandler(error)
+                }
+                else {
+                    let localUrl = response.fileURL?.absoluteString
+                    episode.localAudioUrl = localUrl
+                    
+                    //Save Episode to Core Data
+                    _ = DatabaseHandler.shared.findOrCreateEpisode(episode)
+                    
+                    //Update the episode with localAudioURL
+                    let index = DownloadsController.downloadedEpisodes.firstIndex { (episodeToUpdate) -> Bool in
+                        episodeToUpdate.name == episode.name &&
+                            episodeToUpdate.author == episode.author
+                    }
+                    if index != nil {
+                        DownloadsController.downloadedEpisodes[index!] = episode
+                    }
                 }
             }
-        }
     }
 }

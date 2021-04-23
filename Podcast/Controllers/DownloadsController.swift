@@ -17,18 +17,41 @@ class DownloadsController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        
+        guard let tabItems = UIApplication.mainTabBarController()?.tabBar.items else {return}
+        tabItems[2].badgeValue = nil
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DownloadsController.downloadedEpisodes = DatabaseHandler.shared.fetchDownloadedEpisodes()
         tableView.reloadData()
         
         self.title = "Downloads"
         
         let nib = UINib(nibName: "EpisodeCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellIdentifier)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleDownloadProgress), name: .downloadProgress, object: nil)
+    }
+    
+    @objc private func handleDownloadProgress(notification: Notification) {
+        
+        guard let userInfo = notification.userInfo as? [String:Any],
+              let progress = userInfo["progress"] as? Double,
+              let title = userInfo["title"] as? String,
+              let index = DownloadsController.downloadedEpisodes.firstIndex(where: {$0.name == title}),
+              let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? EpisodeCell
+        else {return}
+        cell.progressLabel.isHidden = false
+        cell.progressLabel.text = "\(Int(progress*100))%"
+        
+        if progress == 1 {
+            cell.progressLabel.isHidden = true
+        }
+        
+        print(progress, title)
+        
     }
     
     

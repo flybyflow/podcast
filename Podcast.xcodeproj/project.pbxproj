@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		54447EE01CBE3F11AABF4B81 /* Pods_Podcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DB383A5E7A1039EC74611CA /* Pods_Podcast.framework */; };
+		CD04145126331BEE00A0635E /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04145026331BEE00A0635E /* NSNotification.swift */; };
 		CD2F621A25ECBFB300E04060 /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2F621925ECBFB300E04060 /* DatabaseHandler.swift */; };
 		CD4304F125FD957600EABDEB /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4304F025FD957600EABDEB /* Audio.swift */; };
 		CD45DB4925E55B1C00AE907E /* AudioPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD45DB4825E55B1C00AE907E /* AudioPlayer.xib */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		1A03B37AEF120144BDC07E85 /* Pods-Podcast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.release.xcconfig"; path = "Target Support Files/Pods-Podcast/Pods-Podcast.release.xcconfig"; sourceTree = "<group>"; };
 		9DB383A5E7A1039EC74611CA /* Pods_Podcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD04145026331BEE00A0635E /* NSNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
 		CD2F621925ECBFB300E04060 /* DatabaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
 		CD4304F025FD957600EABDEB /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		CD45DB4825E55B1C00AE907E /* AudioPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioPlayer.xib; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				CD2F621925ECBFB300E04060 /* DatabaseHandler.swift */,
+				CD04145026331BEE00A0635E /* NSNotification.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				CDE7C4A325C852B3002323C2 /* SearchNavController.swift in Sources */,
 				CDA3029925EC413B003E08A5 /* CMTime.swift in Sources */,
 				CDDCAF312622006600FA3F4B /* UIApplication.swift in Sources */,
+				CD04145126331BEE00A0635E /* NSNotification.swift in Sources */,
 				CDA82C2625CC2B0700546AAF /* EpisodeCell.swift in Sources */,
 				CDE7C48725C79E5B002323C2 /* AppDelegate.swift in Sources */,
 				CDBEF0B82630826800B36EA8 /* FavoritePodcastCell.swift in Sources */,
