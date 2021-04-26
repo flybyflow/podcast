@@ -36,7 +36,7 @@ class DatabaseHandler {
         return []
     }
 
-    func findOrCreateEpisode(_ episode: Episode) -> CoreDataEpisode? {
+    func findOrCreateEpisode(_ episode: Episode) -> (episode: CoreDataEpisode,context: NSManagedObjectContext)? {
         
         let context = container.newBackgroundContext()
         
@@ -46,7 +46,7 @@ class DatabaseHandler {
         do {
             let matches = try context.fetch(request)
             if !matches.isEmpty {
-                return matches.first
+                return (matches.first!,context)
             }
         }
         catch {
@@ -65,4 +65,25 @@ class DatabaseHandler {
         try? context.save()
         return nil
     }
+    
+    func deleteEpisode(_ episode: Episode) {
+        guard let fetchRequest = findOrCreateEpisode(episode) else {return}
+        
+        fetchRequest.context.delete(fetchRequest.episode)
+        try? fetchRequest.context.save()
+        
+    }
+    
+    private func delete(episode: CoreDataEpisode) {
+       guard let context = episode.managedObjectContext else { return }
+
+        if context == container.viewContext {
+         context.delete(episode)
+       } else {
+         container.performBackgroundTask { context in
+         context.delete(episode)
+       }
+     }
+        try? container.viewContext.save()
+   }
 }

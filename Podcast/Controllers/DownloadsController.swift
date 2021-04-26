@@ -72,5 +72,22 @@ class DownloadsController: UITableViewController {
         let episode = DownloadsController.downloadedEpisodes[indexPath.row]
         Audio.loadAudioPlayer(episode: episode, playlistEpisodes: DownloadsController.downloadedEpisodes)
     }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in
+            print("attempting to delete episode")
+            
+            let episode = DownloadsController.downloadedEpisodes.remove(at: indexPath.item)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            DispatchQueue.main.async {
+                DatabaseHandler.shared.deleteEpisode(episode)
+            }
+        }
+        
+        let config = UISwipeActionsConfiguration(actions: [deleteAction])
+        return config
+    }
 }
 
