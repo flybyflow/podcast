@@ -12,12 +12,10 @@ class SearchNavController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Search"
+       
         
         setupTableView()
         setupSearchBar()
-        
-        searchBar(searchController.searchBar, textDidChange: "News")
     }
     
     //MARK: - Constants
@@ -101,15 +99,16 @@ class SearchNavController: UITableViewController, UISearchBarDelegate {
         tableView.register(nib, forCellReuseIdentifier: cellIdentifier)
         
         tableView.tableFooterView = UIView()
+        title = "Search"
     }
     
     
     fileprivate func setupSearchBar() {
-        //TODO: - Make Search Bar Appear by Default
         navigationItem.searchController = searchController
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.definesPresentationContext = true
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
 }
