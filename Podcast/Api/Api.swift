@@ -60,13 +60,9 @@ class Api {
                 var episodes = [Episode]()
                 
                 feed.rssFeed?.items?.forEach({ (feedItem) in
-                    var episode = Episode(feedItem: feedItem)
-                    if episode.imageUrlString == nil {
-                        episode.imageUrlString = feedItem.iTunes?.iTunesImage?.attributes?.href
-                    }
+                    let episode = Episode(feedItem: feedItem)
                     episodes.append(episode)
                 })
-                
                 
                 //TODO: - Fix AtomFeed & JsonFeed
                 

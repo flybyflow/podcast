@@ -22,7 +22,7 @@ struct Episode: Equatable {
     
     init(feedItem: RSSFeedItem) {
         self.name = feedItem.title ?? ""
-        self.description = feedItem.iTunes?.iTunesSubtitle ?? feedItem.description ?? ""
+        self.description = feedItem.iTunes?.iTunesSummary ?? feedItem.iTunes?.iTunesSubtitle ?? feedItem.description ?? ""
         self.date = feedItem.pubDate ?? Date()
         self.imageUrlString = feedItem.iTunes?.iTunesImage?.attributes?.href
         self.audioUrl = feedItem.enclosure?.attributes?.url ?? ""

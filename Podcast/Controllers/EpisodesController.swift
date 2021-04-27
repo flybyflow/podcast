@@ -29,7 +29,7 @@ class EpisodesVC: UITableViewController {
         super.viewDidLoad()
         
         setupTableView()
-        FetchEpisodesFromNetwork()
+        FetchEpisodesFromNetwork(formattingCallback: formatEpisodes)
     }
     
     @objc private func handleSaveFavorite() {
@@ -58,7 +58,7 @@ class EpisodesVC: UITableViewController {
         }
     }
     
-    fileprivate func FetchEpisodesFromNetwork() {
+    fileprivate func FetchEpisodesFromNetwork(formattingCallback: @escaping () -> Void) {
         Api.shared.fetchEpisodes(with: podcast.feedUrlString,
                                  errorHandler: {
                                     DispatchQueue.main.async {
@@ -69,10 +69,22 @@ class EpisodesVC: UITableViewController {
                                  completionHandler:
                                     { (episodes) in
                                         self.episodes = episodes
+                                        formattingCallback()
+        
                                         DispatchQueue.main.async {
                                             self.tableView.reloadData()
                                         }
                                     })
+    }
+    
+    fileprivate func formatEpisodes() {
+        episodes = episodes.map({ (episode) -> Episode in
+            var tempEpisode = episode
+            if tempEpisode.imageUrlString == nil {
+                tempEpisode.imageUrlString = podcast.imagePath
+            }
+            return tempEpisode
+        })
     }
     
     fileprivate func setupTableView() {
