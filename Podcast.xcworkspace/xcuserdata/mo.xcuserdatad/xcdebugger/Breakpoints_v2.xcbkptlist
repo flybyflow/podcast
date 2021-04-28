@@ -151,22 +151,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5F8607D0-CAB1-4C42-B19D-B9CB766CA7CA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Podcast/Models/Episode.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "init(coreDataEpisode:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "085ECBDA-BCFE-4498-9F41-41CEAA6CB723"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -327,70 +311,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FFE6198C-2FDB-442E-9D8B-167F2BE58621"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Podcast/Utilities/Audio.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
-            landmarkName = "loadAudioPlayer(episode:playlistEpisodes:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FFE6198C-2FDB-442E-9D8B-167F2BE58621 - c77cd861c41f33cb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "default argument 1 of static Podcast.Audio.loadAudioPlayer(episode: Podcast.Episode, playlistEpisodes: Swift.Array&lt;Podcast.Episode&gt;) -&gt; ()"
-                  moduleName = "Podcast"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mo/Desktop/developer/Podcast/Podcast/Utilities/Audio.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  uuid = "FFE6198C-2FDB-442E-9D8B-167F2BE58621 - e88393a626c7323a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static Podcast.Audio.loadAudioPlayer(episode: Podcast.Episode, playlistEpisodes: Swift.Array&lt;Podcast.Episode&gt;) -&gt; ()"
-                  moduleName = "Podcast"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mo/Desktop/developer/Podcast/Podcast/Utilities/Audio.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "15"
-                  endingLineNumber = "15"
-                  offsetFromSymbolStart = "160">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2F4E9913-B094-4702-9E61-5834291F1C4D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Podcast/Api/Api.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "fetchEpisodes(with:errorHandler:completionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "3338D9F8-79AF-45CF-9154-09574C586C67"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -407,128 +327,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2E9EBCDE-8C66-41D8-85B4-C6489CFA182E"
-            shouldBeEnabled = "Yes"
+            uuid = "BF5E3AB3-3565-4B34-8400-47B5960629FF"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Podcast/Api/Api.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "fetchEpisodes(with:errorHandler:completionHandler:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "2E9EBCDE-8C66-41D8-85B4-C6489CFA182E - 2e6991f5ab978cf3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in Podcast.Api.fetchEpisodes(with: Swift.Optional&lt;Swift.String&gt;, errorHandler: () -&gt; (), completionHandler: (Swift.Array&lt;Podcast.Episode&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Podcast"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mo/Desktop/developer/Podcast/Podcast/Api/Api.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "536">
-               </Location>
-               <Location
-                  uuid = "2E9EBCDE-8C66-41D8-85B4-C6489CFA182E - 2e6991f5ab978cf3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in Podcast.Api.fetchEpisodes(with: Swift.Optional&lt;Swift.String&gt;, errorHandler: () -&gt; (), completionHandler: (Swift.Array&lt;Podcast.Episode&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Podcast"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mo/Desktop/developer/Podcast/Podcast/Api/Api.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "568">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E4712B3E-1B65-4797-A748-C7C5A52711C6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Podcast/Api/Api.swift"
+            filePath = "Podcast/Views/AudioPlayerView+Gestures.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
             endingLineNumber = "62"
-            landmarkName = "fetchEpisodes(with:errorHandler:completionHandler:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E4712B3E-1B65-4797-A748-C7C5A52711C6 - 2e6991f5ab978c6f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in Podcast.Api.fetchEpisodes(with: Swift.Optional&lt;Swift.String&gt;, errorHandler: () -&gt; (), completionHandler: (Swift.Array&lt;Podcast.Episode&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Podcast"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mo/Desktop/developer/Podcast/Podcast/Api/Api.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62"
-                  offsetFromSymbolStart = "664">
-               </Location>
-               <Location
-                  uuid = "E4712B3E-1B65-4797-A748-C7C5A52711C6 - 1e5fdbcd308701f2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (FeedKit.RSSFeedItem) -&gt; () in closure #1 () -&gt; () in Podcast.Api.fetchEpisodes(with: Swift.Optional&lt;Swift.String&gt;, errorHandler: () -&gt; (), completionHandler: (Swift.Array&lt;Podcast.Episode&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Podcast"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mo/Desktop/developer/Podcast/Podcast/Api/Api.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63"
-                  offsetFromSymbolStart = "188">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "14AF85D7-A27A-4439-9702-CD3BBFD3319F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Podcast/Models/Episode.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "init(feedItem:)"
+            landmarkName = "handlePanMaximize(gesture:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1599D6F3-7546-4F00-8A85-2401D38237EA"
+            uuid = "4B146488-5551-47EC-AC3E-7599096A03AD"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Podcast/Models/Episode.swift"
+            filePath = "Podcast/Views/AudioPlayerView+Gestures.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "init(feedItem:)"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "handlePanCancelled()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
