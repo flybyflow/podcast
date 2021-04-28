@@ -43,8 +43,19 @@ extension AudioPlayerView {
                 self.transform = .identity
                 if translation.y > 200 {
                     UIApplication.mainTabBarController()?.minimizePlayer()
+                } else {
+                    self.handlePanCancelled()
                 }
             }
+        }
+    }
+    
+    fileprivate func handlePanCancelled() {
+        //TODO: -Fix Implementation
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.layoutIfNeeded()
+            guard let translationValue = self.superview?.frame.size.height else {return}
+            UIApplication.mainTabBarController()?.tabBar.frame.origin.y = translationValue
         }
     }
     
