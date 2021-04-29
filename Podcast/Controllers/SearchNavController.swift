@@ -102,7 +102,6 @@ class SearchNavController: UITableViewController, UISearchBarDelegate {
         title = "Search"
     }
     
-    
     fileprivate func setupSearchBar() {
         navigationItem.searchController = searchController
         searchController.searchBar.delegate = self

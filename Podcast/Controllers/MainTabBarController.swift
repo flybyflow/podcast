@@ -10,7 +10,7 @@ import UIKit
 class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
-        tabBar.tintColor = .purple
+        tabBar.tintColor = .systemBlue
         super.viewDidLoad()
         setupPlayerDetailsView()
                 
@@ -51,7 +51,7 @@ class MainTabBarController: UITabBarController {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut) {
             self.view.layoutIfNeeded()
             self.tabBar.transform = .identity
-            self.audioPlayerView.maximizedStackedView.alpha = 0
+            self.audioPlayerView.maximizedView.alpha = 0
             self.audioPlayerView.miniPlayerView.alpha = 1
         }
     }
@@ -64,7 +64,7 @@ class MainTabBarController: UITabBarController {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut) {
             self.view.layoutIfNeeded()
             self.tabBar.frame.origin.y = self.view.frame.size.height
-            self.audioPlayerView.maximizedStackedView.alpha = 1
+            self.audioPlayerView.maximizedView.alpha = 1
             self.audioPlayerView.miniPlayerView.alpha = 0
         }
     }

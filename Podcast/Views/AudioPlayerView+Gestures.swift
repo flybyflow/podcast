@@ -12,12 +12,12 @@ extension AudioPlayerView {
     internal func setupGestures() {
         miniPlayerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
         miniPlayerView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanMaximize)))
-        maximizedStackedView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanMinimize)))
+        maximizedView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanMinimize)))
     }
     
     fileprivate func handlePanChanged(_ translation: CGPoint) {
         self.transform = CGAffineTransform(translationX: 0, y: translation.y)
-        maximizedStackedView.alpha = -translation.y/200
+        maximizedView.alpha = -translation.y/200
         miniPlayerView.alpha = 1 + translation.y/200
     }
     
@@ -27,7 +27,7 @@ extension AudioPlayerView {
             if -translation.y > 200 || velocity.y > 50 {
                 UIApplication.mainTabBarController()?.maximizePlayer()
             } else {
-                self.maximizedStackedView.alpha = 0
+                self.maximizedView.alpha = 0
                 self.miniPlayerView.alpha = 1
             }
         }

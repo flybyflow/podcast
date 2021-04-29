@@ -19,6 +19,11 @@ class AudioPlayerView: UIView {
         setupGestures()
         setupInterruptionObserver()
         setupBackgroundPlayback()
+        
+        
+        
+        timeSlider.minimumTrackTintColor = .clear
+        timeSlider.maximumTrackTintColor = .clear
     }
     
     private func setupInterruptionObserver() {
@@ -147,6 +152,7 @@ class AudioPlayerView: UIView {
                 miniImageView.sd_setImage(with: url)
             }
             setupBackgroundInfo()
+
             // Moved Here to Avoid Interrupting Audio Playback From another App on Launch
             try? AVAudioSession.sharedInstance().setActive(true)
         }
@@ -223,13 +229,13 @@ class AudioPlayerView: UIView {
     @IBOutlet var imageView: UIImageView! {
         didSet {
             imageView.transform = imageViewtransformValue
-            imageView.layer.cornerRadius = 5
+            imageView.layer.cornerRadius = 24
             imageView.clipsToBounds = true
         }
     }
     
     @IBOutlet weak var miniPlayerView: UIView!
-    @IBOutlet weak var maximizedStackedView: UIStackView!
+    @IBOutlet weak var maximizedView: UIView!
     
     @IBOutlet var nameLabel: UILabel! 
     @IBOutlet var authorLabel: UILabel!
@@ -305,16 +311,16 @@ class AudioPlayerView: UIView {
     
     fileprivate func handlePlayAudio() {
         player.play()
-        playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-        miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        playPauseButton.setImage(#imageLiteral(resourceName: "pauseButton"), for: .normal)
+        miniPlayPauseButton.setImage(#imageLiteral(resourceName: "pauseButton"), for: .normal)
         enlargeEpisodeImageView()
         setLockScreenElapsedTime(playbackRate: 1.0)
     }
     
     fileprivate func handlePauseAudio() {
         player.pause()
-        playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
-        miniPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        playPauseButton.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
+        miniPlayPauseButton.setImage(#imageLiteral(resourceName: "playButton"), for: .normal)
         minimizeEpisodeImageView()
         setLockScreenElapsedTime(playbackRate: 0)
     }
