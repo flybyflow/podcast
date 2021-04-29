@@ -9,6 +9,7 @@ import UIKit
 import SDWebImage
 import AVKit
 import MediaPlayer
+import SoundWave
 
 class AudioPlayerView: UIView {
     
@@ -20,10 +21,7 @@ class AudioPlayerView: UIView {
         setupInterruptionObserver()
         setupBackgroundPlayback()
         
-        
-        
-        timeSlider.minimumTrackTintColor = .clear
-        timeSlider.maximumTrackTintColor = .clear
+        timeSlider.setThumbImage(#imageLiteral(resourceName: "thumbImage"), for: .normal)
     }
     
     private func setupInterruptionObserver() {
@@ -57,11 +55,11 @@ class AudioPlayerView: UIView {
     
     private func setupBackgroundInfo() {
         var nowPlayingInfo = [String:Any]()
-
+        
         //Setting Strings
         nowPlayingInfo =  [MPMediaItemPropertyArtist: episode.author,
                            MPMediaItemPropertyTitle: episode.name]
-
+        
         //Setting Image
         if let image = imageView.image {
             let artwork = MPMediaItemArtwork(boundsSize: imageView.bounds.size) { (_) -> UIImage in
@@ -133,7 +131,7 @@ class AudioPlayerView: UIView {
         guard let index = currentEpisodeIndex else {return}
         self.episode = playlistEpisodes[(index + offset) % playlistEpisodes.count]
     }
-
+    
     static func initFromNib() -> AudioPlayerView {
         return Bundle.main.loadNibNamed("AudioPlayer", owner: self, options: nil)?.first as! AudioPlayerView
     }
@@ -146,24 +144,25 @@ class AudioPlayerView: UIView {
             nameLabel.text = episode.name
             miniNameLabel.text = episode.name
             authorLabel.text = episode.author
-              
+            
             if let url = URL(string: episode.imageUrlString ?? "") {
                 imageView.sd_setImage(with: url)
                 miniImageView.sd_setImage(with: url)
             }
             setupBackgroundInfo()
-
+            
             // Moved Here to Avoid Interrupting Audio Playback From another App on Launch
             try? AVAudioSession.sharedInstance().setActive(true)
         }
     }
-     
+    
     func observeCurrentTime() {
         let interval = CMTimeMake(value: 1,timescale: 1)
         player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] (time) in
             self?.updateSlider(currentTime: time)
             self?.updateCurrentTimeLabel(currentTime: time)
             self?.updateTotalTimeLabel()
+            
         }
     }
     
@@ -243,6 +242,7 @@ class AudioPlayerView: UIView {
     @IBOutlet var currentTimeLabel: UILabel!
     @IBOutlet var totalTimeLabel: UILabel!
     @IBOutlet var timeSlider: UISlider!
+    @IBOutlet var volumeSlider: UISlider!
     
     @IBOutlet var playPauseButton: UIButton!
     

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		54447EE01CBE3F11AABF4B81 /* Pods_Podcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DB383A5E7A1039EC74611CA /* Pods_Podcast.framework */; };
 		CD04145126331BEE00A0635E /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04145026331BEE00A0635E /* NSNotification.swift */; };
+		CD275DE3263B2FFA00313C80 /* MaskProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD275DE2263B2FFA00313C80 /* MaskProgressView.swift */; };
 		CD2F621A25ECBFB300E04060 /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2F621925ECBFB300E04060 /* DatabaseHandler.swift */; };
 		CD4304F125FD957600EABDEB /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4304F025FD957600EABDEB /* Audio.swift */; };
 		CD45DB4925E55B1C00AE907E /* AudioPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD45DB4825E55B1C00AE907E /* AudioPlayer.xib */; };
@@ -45,6 +46,7 @@
 		1A03B37AEF120144BDC07E85 /* Pods-Podcast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Podcast.release.xcconfig"; path = "Target Support Files/Pods-Podcast/Pods-Podcast.release.xcconfig"; sourceTree = "<group>"; };
 		9DB383A5E7A1039EC74611CA /* Pods_Podcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD04145026331BEE00A0635E /* NSNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
+		CD275DE2263B2FFA00313C80 /* MaskProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskProgressView.swift; sourceTree = "<group>"; };
 		CD2F621925ECBFB300E04060 /* DatabaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
 		CD4304F025FD957600EABDEB /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		CD45DB4825E55B1C00AE907E /* AudioPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioPlayer.xib; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		CD4304EF25FD956200EABDEB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CD275DE2263B2FFA00313C80 /* MaskProgressView.swift */,
 				CD4304F025FD957600EABDEB /* Audio.swift */,
 			);
 			path = Utilities;
@@ -374,6 +377,7 @@
 				CD4304F125FD957600EABDEB /* Audio.swift in Sources */,
 				CDE7C49F25C79E71002323C2 /* MainTabBarController.swift in Sources */,
 				CDE7C49125C79E5B002323C2 /* Podcast.xcdatamodeld in Sources */,
+				CD275DE3263B2FFA00313C80 /* MaskProgressView.swift in Sources */,
 				CD95933525C8716E00AC7F3B /* SearchResults.swift in Sources */,
 				CDC4788E25EB3AC700FB6058 /* AudioPlayerView.swift in Sources */,
 				CDE7C48925C79E5B002323C2 /* SceneDelegate.swift in Sources */,
