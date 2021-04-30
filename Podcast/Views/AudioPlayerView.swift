@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 import AVKit
 import MediaPlayer
-import SoundWave
+import M13ProgressSuite
 
 class AudioPlayerView: UIView {
     
@@ -22,7 +22,14 @@ class AudioPlayerView: UIView {
         setupBackgroundPlayback()
         
         timeSlider.setThumbImage(#imageLiteral(resourceName: "thumbImage"), for: .normal)
+        
+        progressView.drawGreyscaleBackground = false
+        
+        progressView.progressDirection = M13ProgressViewImageProgressDirectionLeftToRight
+        progressView.progressImage = #imageLiteral(resourceName: "Audio Wave")
     }
+    
+    @IBOutlet var progressView: M13ProgressViewImage!
     
     private func setupInterruptionObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleInterruption), name: AVAudioSession.interruptionNotification, object: nil)
@@ -201,7 +208,7 @@ class AudioPlayerView: UIView {
         let percentage = CMTimeGetSeconds(currentTime) / CMTimeGetSeconds(totalTime)
         
         timeSlider.value = Float(percentage)
-        
+        progressView.setProgress(CGFloat(percentage), animated: true)
     }
     
     func updateTotalTimeLabel() {

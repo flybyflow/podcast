@@ -1,30 +1,30 @@
 PODS:
   - Alamofire (5.4.1)
   - FeedKit (9.1.2)
+  - M13ProgressSuite (1.2.9)
   - SDWebImage (5.10.4):
     - SDWebImage/Core (= 5.10.4)
   - SDWebImage/Core (5.10.4)
-  - SoundWave (0.1.4)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - FeedKit (~> 9.0)
+  - M13ProgressSuite (~> 1.2)
   - SDWebImage
-  - SoundWave
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - FeedKit
+    - M13ProgressSuite
     - SDWebImage
-    - SoundWave
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   FeedKit: 71653273ab08e618cd6fd1301ca08fc02dca6a9e
+  M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
-  SoundWave: d98ffaa863570b29d991da32a09b7ce1b4aaf2d4
 
-PODFILE CHECKSUM: f793d889059829612ff71ff6e16debed96d21a98
+PODFILE CHECKSUM: f5db10fd98b4b8151776a872054a55bdeb339581
 
 COCOAPODS: 1.10.1

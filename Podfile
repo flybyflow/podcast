@@ -8,6 +8,7 @@ target 'Podcast' do
   # Pods for Podcast
 	pod 'Alamofire', '~> 5.2'
 	pod 'SDWebImage', :modular_headers => true
+pod 'M13ProgressSuite', '~> 1.2'
   pod 'FeedKit', '~> 9.0'
 
 end
