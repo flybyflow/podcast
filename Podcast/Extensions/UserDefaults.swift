@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import CoreMedia
 
 extension UserDefaults {
     static let favoritesKey = "favoritePodcastsKey"
+    static let currentEpisodeKey = "currentEpisodeKey"
+    static let currentTimeKey = "currentTimeKey"
     
     func saveFavorite(podcast: Podcast) {
         var favoritePodcasts = fetchFavorites()
@@ -52,5 +55,51 @@ extension UserDefaults {
         }catch let error{
             print("Failed to save: Error: \(error)")
         }
+    }
+    
+    // MARK: -Current Episode
+    
+    func saveCurrentEpisode(episode: Episode) {
+        do{
+            let data = try JSONEncoder().encode(episode)
+            UserDefaults.standard.set(data, forKey: UserDefaults.currentEpisodeKey)
+            
+        }catch let error{
+            print("Failed to save: Error: \(error)")
+        }
+    }
+    
+    func fetchCurrentEpisode() -> Episode? {
+        do{
+            if let data = UserDefaults.standard.data(forKey: UserDefaults.currentEpisodeKey){
+                let currentEpisode = try JSONDecoder().decode(Episode.self, from: data)
+                return currentEpisode
+            }
+            
+        }catch let error {
+            print("Failed to save: Error: \(error)")
+            return nil
+        }
+        return nil
+    }
+}
+// MARK: -CMTime
+
+extension UserDefaults {
+    func cmtime(forKey key: String) -> CMTime? {
+        if let timescale = object(forKey: key + ".timescale") as? NSNumber {
+            let seconds = double(forKey: key + ".seconds")
+            return CMTime(seconds: seconds, preferredTimescale: timescale.int32Value)
+        } else {
+            return nil
+        }
+    }
+    
+    func set(_ cmtime: CMTime, forKey key: String) {
+        let seconds = cmtime.seconds
+        let timescale = cmtime.timescale
+        
+        set(seconds, forKey: key + ".seconds")
+        set(NSNumber(value: timescale), forKey: key + ".timescale")
     }
 }

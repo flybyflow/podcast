@@ -10,7 +10,7 @@ import FeedKit
 import CoreData
 
 
-struct Episode: Equatable {
+struct Episode: Equatable, Codable {
     let name: String
     let description: String
     let date: Date
@@ -18,6 +18,7 @@ struct Episode: Equatable {
     let audioUrl: String
     let author: String
     var localAudioUrl: String?
+    let duration: TimeInterval
     
     
     init(feedItem: RSSFeedItem) {
@@ -27,6 +28,7 @@ struct Episode: Equatable {
         self.imageUrlString = feedItem.iTunes?.iTunesImage?.attributes?.href
         self.audioUrl = feedItem.enclosure?.attributes?.url ?? ""
         self.author = feedItem.iTunes?.iTunesAuthor ?? ""
+        self.duration = feedItem.iTunes?.iTunesDuration ?? TimeInterval()
     }
     
     init(coreDataEpisode: CoreDataEpisode) {
@@ -37,6 +39,7 @@ struct Episode: Equatable {
         self.audioUrl = ""
         self.author = coreDataEpisode.author!
         self.localAudioUrl = coreDataEpisode.localAudioUrl
+        self.duration = TimeInterval()
     }
     
 //    init(feedItem: JSONFeedItem) {

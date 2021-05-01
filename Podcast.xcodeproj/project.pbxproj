@@ -10,6 +10,11 @@
 		54447EE01CBE3F11AABF4B81 /* Pods_Podcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DB383A5E7A1039EC74611CA /* Pods_Podcast.framework */; };
 		CD04145126331BEE00A0635E /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04145026331BEE00A0635E /* NSNotification.swift */; };
 		CD275DE3263B2FFA00313C80 /* MaskProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD275DE2263B2FFA00313C80 /* MaskProgressView.swift */; };
+		CD275E3D263C38EC00313C80 /* HomeScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD275E3B263C38EC00313C80 /* HomeScreenController.swift */; };
+		CD275E3E263C38EC00313C80 /* HomeScreenController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD275E3C263C38EC00313C80 /* HomeScreenController.xib */; };
+		CD275E46263C664000313C80 /* HomePagePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD275E45263C664000313C80 /* HomePagePlayerView.swift */; };
+		CD275E49263C66BF00313C80 /* HomePagePlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD275E48263C66BF00313C80 /* HomePagePlayer.xib */; };
+		CD275E54263C7D9500313C80 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD275E53263C7D9500313C80 /* CALayer.swift */; };
 		CD2F621A25ECBFB300E04060 /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2F621925ECBFB300E04060 /* DatabaseHandler.swift */; };
 		CD4304F125FD957600EABDEB /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4304F025FD957600EABDEB /* Audio.swift */; };
 		CD45DB4925E55B1C00AE907E /* AudioPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD45DB4825E55B1C00AE907E /* AudioPlayer.xib */; };
@@ -47,6 +52,11 @@
 		9DB383A5E7A1039EC74611CA /* Pods_Podcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD04145026331BEE00A0635E /* NSNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
 		CD275DE2263B2FFA00313C80 /* MaskProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskProgressView.swift; sourceTree = "<group>"; };
+		CD275E3B263C38EC00313C80 /* HomeScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
+		CD275E3C263C38EC00313C80 /* HomeScreenController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeScreenController.xib; sourceTree = "<group>"; };
+		CD275E45263C664000313C80 /* HomePagePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomePagePlayerView.swift; path = Podcast/Views/HomePagePlayerView.swift; sourceTree = SOURCE_ROOT; };
+		CD275E48263C66BF00313C80 /* HomePagePlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePagePlayer.xib; sourceTree = "<group>"; };
+		CD275E53263C7D9500313C80 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CALayer.swift; path = Podcast/Extensions/CALayer.swift; sourceTree = SOURCE_ROOT; };
 		CD2F621925ECBFB300E04060 /* DatabaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
 		CD4304F025FD957600EABDEB /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		CD45DB4825E55B1C00AE907E /* AudioPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioPlayer.xib; sourceTree = "<group>"; };
@@ -128,13 +138,12 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		CD5FBE7025ECC1570032253E /* CoreData */ = {
+		CD5FBE7025ECC1570032253E /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
 				CD2F621925ECBFB300E04060 /* DatabaseHandler.swift */,
-				CD04145026331BEE00A0635E /* NSNotification.swift */,
 			);
-			path = CoreData;
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 		CD95933325C8714600AC7F3B /* Models */ = {
@@ -161,6 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				CDE7C49E25C79E70002323C2 /* MainTabBarController.swift */,
+				CD275E3B263C38EC00313C80 /* HomeScreenController.swift */,
+				CD275E3C263C38EC00313C80 /* HomeScreenController.xib */,
 				CDBEF0B426305D0F00B36EA8 /* FavoritesController.swift */,
 				CDE7C4A225C852B3002323C2 /* SearchNavController.swift */,
 				CDA82C1925C9A3B000546AAF /* EpisodesController.swift */,
@@ -172,10 +183,12 @@
 		CDA82C3025CC57EA00546AAF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CD275E53263C7D9500313C80 /* CALayer.swift */,
 				CD6E2A602630B5E5004EF5CA /* UserDefaults.swift */,
 				CDA3029825EC413B003E08A5 /* CMTime.swift */,
 				CDA82C2D25CC57E700546AAF /* String.swift */,
 				CDDCAF302622006600FA3F4B /* UIApplication.swift */,
+				CD04145026331BEE00A0635E /* NSNotification.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -188,6 +201,8 @@
 				CDC3F4E225C8D60B00C0C868 /* PodcastCell.swift */,
 				CDA82C2425CC2B0700546AAF /* EpisodeCell.swift */,
 				CD45DB4825E55B1C00AE907E /* AudioPlayer.xib */,
+				CD275E48263C66BF00313C80 /* HomePagePlayer.xib */,
+				CD275E45263C664000313C80 /* HomePagePlayerView.swift */,
 				CDA82C2525CC2B0700546AAF /* EpisodeCell.xib */,
 				CDC4788D25EB3AC700FB6058 /* AudioPlayerView.swift */,
 				CDDCAF332622017700FA3F4B /* AudioPlayerView+Gestures.swift */,
@@ -231,7 +246,7 @@
 				CDE7C49725C79E5C002323C2 /* Info.plist */,
 				CDCC48B125ED3ACD004CF392 /* README.md */,
 				CDA82C2225CC2ACC00546AAF /* Controllers */,
-				CD5FBE7025ECC1570032253E /* CoreData */,
+				CD5FBE7025ECC1570032253E /* Core Data */,
 				CD95933A25C88D4600AC7F3B /* Api */,
 				CD5B4897262A1EB700ECA168 /* ViewModel */,
 				CD95933325C8714600AC7F3B /* Models */,
@@ -306,7 +321,9 @@
 				CD45DB4925E55B1C00AE907E /* AudioPlayer.xib in Resources */,
 				CDE7C49325C79E5C002323C2 /* Assets.xcassets in Resources */,
 				CDA82C2725CC2B0700546AAF /* EpisodeCell.xib in Resources */,
+				CD275E3E263C38EC00313C80 /* HomeScreenController.xib in Resources */,
 				CDC3F4DB25C8994500C0C868 /* PodcastCell.xib in Resources */,
+				CD275E49263C66BF00313C80 /* HomePagePlayer.xib in Resources */,
 				CDE7C48E25C79E5B002323C2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,13 +384,16 @@
 				CDE7C4A625C85302002323C2 /* Podcast.swift in Sources */,
 				CDA82C2E25CC57E700546AAF /* String.swift in Sources */,
 				CDE7C4A325C852B3002323C2 /* SearchNavController.swift in Sources */,
+				CD275E54263C7D9500313C80 /* CALayer.swift in Sources */,
 				CDA3029925EC413B003E08A5 /* CMTime.swift in Sources */,
 				CDDCAF312622006600FA3F4B /* UIApplication.swift in Sources */,
 				CD04145126331BEE00A0635E /* NSNotification.swift in Sources */,
 				CDA82C2625CC2B0700546AAF /* EpisodeCell.swift in Sources */,
 				CDE7C48725C79E5B002323C2 /* AppDelegate.swift in Sources */,
 				CDBEF0B82630826800B36EA8 /* FavoritePodcastCell.swift in Sources */,
+				CD275E46263C664000313C80 /* HomePagePlayerView.swift in Sources */,
 				CDA82C2B25CC38E400546AAF /* Episode.swift in Sources */,
+				CD275E3D263C38EC00313C80 /* HomeScreenController.swift in Sources */,
 				CD4304F125FD957600EABDEB /* Audio.swift in Sources */,
 				CDE7C49F25C79E71002323C2 /* MainTabBarController.swift in Sources */,
 				CDE7C49125C79E5B002323C2 /* Podcast.xcdatamodeld in Sources */,

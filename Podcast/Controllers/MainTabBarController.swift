@@ -11,12 +11,14 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         tabBar.tintColor = .systemBlue
+        
         super.viewDidLoad()
         setupPlayerDetailsView()
                 
         viewControllers = [generateControllers(name: "Search", with: SearchNavController()),
                            generateControllers(name: "Favorites", with: FavoritesController(collectionViewLayout: UICollectionViewFlowLayout())),
-                           generateControllers(name: "Downloads", with: DownloadsController())]
+                           generateControllers(name: "Downloads", with: DownloadsController()),
+                           generateControllers(name: "Home", with: HomeScreenController())]
     }
     
     let audioPlayerView = AudioPlayerView.initFromNib()
@@ -76,7 +78,7 @@ class MainTabBarController: UITabBarController {
         navController.tabBarItem.title = name
         navController.tabBarItem.image = UIImage(named: name)
         navController.navigationItem.title = name
-        
+        navController.navigationBar.prefersLargeTitles = true
         return navController
     }
 }

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HomePagePlayerView" customModule="Podcast" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Favorites" translatesAutoresizingMaskIntoConstraints="NO" id="fp0-pI-uCL">
+                    <rect key="frame" x="8" y="52" width="72" height="72"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="72" id="6JA-WU-WKc"/>
+                        <constraint firstAttribute="height" constant="72" id="r1F-Ow-Vpn"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Just a big old podcast name to test this thing out" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hY-JV-zwT">
+                    <rect key="frame" x="88" y="53" width="318" height="38.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="NI4-aE-Yal"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <color key="textColor" red="0.25882352939999997" green="0.2470588235" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A really long author name because I cant do my naming properly" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nxk-PW-tWX">
+                    <rect key="frame" x="88" y="91.5" width="318" height="33.5"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="36" id="A7c-nm-aFu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.63921568630000003" green="0.63137254899999995" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UsQ-fm-dTJ">
+                    <rect key="frame" x="8" y="196" width="39" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88:88" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cyz-Ub-5EQ">
+                    <rect key="frame" x="366.5" y="192" width="39.5" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="OV5-BJ-6yF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="877-gy-lKi" customClass="M13ProgressViewImage">
+                    <rect key="frame" x="8" y="156" width="398" height="40"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Audio Wave" translatesAutoresizingMaskIntoConstraints="NO" id="Mig-Xi-ZjK">
+                    <rect key="frame" x="8" y="156" width="398" height="40"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBW-zr-7Ld">
+                    <rect key="frame" x="0.0" y="138" width="414" height="2"/>
+                    <color key="backgroundColor" systemColor="systemGray2Color"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="aK1-pE-Kk9"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="nxk-PW-tWX" firstAttribute="leading" secondItem="fp0-pI-uCL" secondAttribute="trailing" constant="8" id="0Re-y6-gum"/>
+                <constraint firstItem="Mig-Xi-ZjK" firstAttribute="leading" secondItem="877-gy-lKi" secondAttribute="leading" id="5oA-vu-fle"/>
+                <constraint firstItem="Mig-Xi-ZjK" firstAttribute="top" secondItem="877-gy-lKi" secondAttribute="top" id="9xx-mx-fTp"/>
+                <constraint firstAttribute="trailing" secondItem="pBW-zr-7Ld" secondAttribute="trailing" id="CuX-ZK-1wm"/>
+                <constraint firstItem="fp0-pI-uCL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="GQR-QI-2yc"/>
+                <constraint firstItem="8hY-JV-zwT" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-8" id="N0H-0G-kGe"/>
+                <constraint firstItem="Mig-Xi-ZjK" firstAttribute="bottom" secondItem="877-gy-lKi" secondAttribute="bottom" id="NNj-oY-tO4"/>
+                <constraint firstItem="Mig-Xi-ZjK" firstAttribute="leading" secondItem="UsQ-fm-dTJ" secondAttribute="leading" id="PM8-JS-f0K"/>
+                <constraint firstItem="8hY-JV-zwT" firstAttribute="leading" secondItem="fp0-pI-uCL" secondAttribute="trailing" constant="8" id="S95-Wr-hiv"/>
+                <constraint firstItem="Mig-Xi-ZjK" firstAttribute="top" secondItem="pBW-zr-7Ld" secondAttribute="bottom" constant="16" id="XZV-PU-SpP"/>
+                <constraint firstItem="8hY-JV-zwT" firstAttribute="centerY" secondItem="fp0-pI-uCL" secondAttribute="centerY" constant="-16" id="c6Q-nw-w0S"/>
+                <constraint firstItem="UsQ-fm-dTJ" firstAttribute="centerY" secondItem="cyz-Ub-5EQ" secondAttribute="centerY" id="dJd-OA-lLG"/>
+                <constraint firstItem="fp0-pI-uCL" firstAttribute="bottom" secondItem="pBW-zr-7Ld" secondAttribute="bottom" constant="-16" id="doK-h7-kxK"/>
+                <constraint firstItem="Mig-Xi-ZjK" firstAttribute="leading" secondItem="fp0-pI-uCL" secondAttribute="leading" id="ffn-xZ-wCe"/>
+                <constraint firstItem="cyz-Ub-5EQ" firstAttribute="trailing" secondItem="Mig-Xi-ZjK" secondAttribute="trailing" id="h2C-ij-G1c"/>
+                <constraint firstItem="877-gy-lKi" firstAttribute="trailing" secondItem="Mig-Xi-ZjK" secondAttribute="trailing" id="mNg-DP-cGa"/>
+                <constraint firstItem="UsQ-fm-dTJ" firstAttribute="top" secondItem="Mig-Xi-ZjK" secondAttribute="bottom" id="maj-Yd-8sl"/>
+                <constraint firstItem="nxk-PW-tWX" firstAttribute="top" secondItem="8hY-JV-zwT" secondAttribute="bottom" id="phs-4C-BcA"/>
+                <constraint firstItem="Mig-Xi-ZjK" firstAttribute="trailing" secondItem="nxk-PW-tWX" secondAttribute="trailing" id="plr-Il-pBe"/>
+                <constraint firstItem="fp0-pI-uCL" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="qZm-F3-h0l"/>
+                <constraint firstItem="nxk-PW-tWX" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-8" id="uCk-l2-qt0"/>
+                <constraint firstItem="pBW-zr-7Ld" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="unG-sx-sfR"/>
+                <constraint firstItem="Mig-Xi-ZjK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="zEq-E8-36W"/>
+            </constraints>
+            <connections>
+                <outlet property="authorLabel" destination="nxk-PW-tWX" id="rK5-FR-bhR"/>
+                <outlet property="currentTimeLabel" destination="UsQ-fm-dTJ" id="j8V-lC-DHo"/>
+                <outlet property="imageView" destination="fp0-pI-uCL" id="Hur-W7-ybf"/>
+                <outlet property="progressImageView" destination="Mig-Xi-ZjK" id="cbE-o2-FbC"/>
+                <outlet property="progressView" destination="877-gy-lKi" id="o4J-wN-v63"/>
+                <outlet property="titleLabel" destination="8hY-JV-zwT" id="Urm-qx-eUp"/>
+                <outlet property="totalTimeLabel" destination="cyz-Ub-5EQ" id="cge-FX-ACs"/>
+            </connections>
+            <point key="canvasLocation" x="-265.21739130434787" y="133.92857142857142"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Audio Wave" width="327" height="40"/>
+        <image name="Favorites" width="23.5" height="23.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

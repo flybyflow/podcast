@@ -28,6 +28,8 @@ class EpisodesVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.largeTitleDisplayMode = .never
+        
         setupTableView()
         FetchEpisodesFromNetwork(formattingCallback: formatEpisodes)
     }

@@ -9,4 +9,5 @@ import Foundation
 
 extension Notification.Name {
     static let downloadProgress = NSNotification.Name("downloadProgress")
+    static let currentTime = NSNotification.Name("currentTime")
 }

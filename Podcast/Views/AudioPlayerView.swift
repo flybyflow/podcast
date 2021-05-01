@@ -20,16 +20,17 @@ class AudioPlayerView: UIView {
         setupGestures()
         setupInterruptionObserver()
         setupBackgroundPlayback()
-        
-        timeSlider.setThumbImage(#imageLiteral(resourceName: "thumbImage"), for: .normal)
-        
-        progressView.drawGreyscaleBackground = false
-        
-        progressView.progressDirection = M13ProgressViewImageProgressDirectionLeftToRight
-        progressView.progressImage = #imageLiteral(resourceName: "Audio Wave")
+        configureSliderUI()
     }
     
     @IBOutlet var progressView: M13ProgressViewImage!
+    
+    private func configureSliderUI() {
+        timeSlider.setThumbImage(#imageLiteral(resourceName: "thumbImage"), for: .normal)
+        progressView.drawGreyscaleBackground = false
+        progressView.progressDirection = M13ProgressViewImageProgressDirectionLeftToRight
+        progressView.progressImage = #imageLiteral(resourceName: "Audio Wave")
+    }
     
     private func setupInterruptionObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleInterruption), name: AVAudioSession.interruptionNotification, object: nil)
@@ -146,7 +147,10 @@ class AudioPlayerView: UIView {
     var playlistEpisodes = [Episode]()
     var episode: Episode! {
         didSet {
-            fetchEpisode()
+            DispatchQueue.main.async { [weak self] in
+                self?.fetchEpisode()
+                self?.setupBackgroundInfo()
+            }
             
             nameLabel.text = episode.name
             miniNameLabel.text = episode.name
@@ -156,7 +160,9 @@ class AudioPlayerView: UIView {
                 imageView.sd_setImage(with: url)
                 miniImageView.sd_setImage(with: url)
             }
-            setupBackgroundInfo()
+            
+            UserDefaults.standard.saveCurrentEpisode(episode: episode)
+            //Get Reference to HomeScreen Player View
             
             // Moved Here to Avoid Interrupting Audio Playback From another App on Launch
             try? AVAudioSession.sharedInstance().setActive(true)
@@ -169,8 +175,13 @@ class AudioPlayerView: UIView {
             self?.updateSlider(currentTime: time)
             self?.updateCurrentTimeLabel(currentTime: time)
             self?.updateTotalTimeLabel()
-            
+            UserDefaults.standard.set(time, forKey: UserDefaults.currentTimeKey)
+            self?.notifyCurrentTime(currentTime: time)
         }
+    }
+    
+    fileprivate func notifyCurrentTime(currentTime: CMTime){
+        NotificationCenter.default.post(name: .currentTime, object: currentTime, userInfo: nil)
     }
     
     fileprivate func observeAudioStarting() {
@@ -208,7 +219,7 @@ class AudioPlayerView: UIView {
         let percentage = CMTimeGetSeconds(currentTime) / CMTimeGetSeconds(totalTime)
         
         timeSlider.value = Float(percentage)
-        progressView.setProgress(CGFloat(percentage), animated: true)
+        progressView.setProgress(CGFloat(percentage), animated: false)
     }
     
     func updateTotalTimeLabel() {
