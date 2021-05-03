@@ -13,6 +13,8 @@ import M13ProgressSuite
 
 class AudioPlayerView: UIView {
     
+    var persistedProgress: CMTime? 
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         observeAudioStarting()
@@ -320,6 +322,11 @@ class AudioPlayerView: UIView {
             let playerItem = AVPlayerItem(url: url)
             player.replaceCurrentItem(with: playerItem)
             handlePlayAudio()
+        }
+        
+        if persistedProgress != nil {
+            player.seek(to: persistedProgress!)
+            persistedProgress = nil
         }
     }
     

@@ -9,7 +9,7 @@ import UIKit
 import AVKit
 import M13ProgressSuite
 
-class HomePagePlayerView: UIView {
+class HomePagePlayerView: UIControl {
     
     static func initFromNib() -> HomePagePlayerView {
         let player = Bundle.main.loadNibNamed("HomePagePlayer", owner: self, options: nil)?.first as! HomePagePlayerView

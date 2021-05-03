@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome back," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qE-Uq-3Vv">
-                    <rect key="frame" x="24" y="24" width="128.5" height="24"/>
+                    <rect key="frame" x="24" y="30" width="129" height="24"/>
                     <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -32,7 +32,7 @@
                         <constraint firstAttribute="height" constant="2" id="rAa-Tm-87K"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3D-0J-vCh" userLabel="Continue Listening View">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3D-0J-vCh" userLabel="Continue Listening View" customClass="UIControl">
                     <rect key="frame" x="24" y="100" width="272" height="170.5"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="190" id="3KX-EG-YHy"/>
@@ -55,8 +55,8 @@
                     <rect key="frame" x="24" y="518.5" width="272" height="568"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONTINUE LISTENING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emd-Xj-0pM">
-                    <rect key="frame" x="24" y="68" width="184" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currently Listening" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emd-Xj-0pM">
+                    <rect key="frame" x="24" y="68" width="158" height="24"/>
                     <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -68,6 +68,7 @@
                 <constraint firstAttribute="trailing" secondItem="m46-bk-gtm" secondAttribute="trailing" constant="24" id="1qR-H2-o78"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4Hg-sq-MNM" secondAttribute="trailing" constant="24" id="50U-M1-CAg"/>
                 <constraint firstItem="emd-Xj-0pM" firstAttribute="top" secondItem="m46-bk-gtm" secondAttribute="top" constant="8" id="Dtn-57-kFQ"/>
+                <constraint firstItem="0qE-Uq-3Vv" firstAttribute="bottom" secondItem="m46-bk-gtm" secondAttribute="bottom" constant="-8" id="HQq-ZE-vqP"/>
                 <constraint firstItem="g3D-0J-vCh" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.3" priority="500" id="Iax-P3-IiS"/>
                 <constraint firstItem="n88-4J-m71" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="JgP-WY-By5"/>
                 <constraint firstItem="4Hg-sq-MNM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="KeM-j8-xpy"/>
@@ -79,7 +80,6 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="g3D-0J-vCh" secondAttribute="trailing" constant="24" id="dgZ-gw-BzM"/>
                 <constraint firstItem="g3D-0J-vCh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="gAj-Ik-o0I"/>
                 <constraint firstItem="n88-4J-m71" firstAttribute="top" secondItem="4Hg-sq-MNM" secondAttribute="bottom" constant="24" id="gbn-jn-HpI"/>
-                <constraint firstItem="0qE-Uq-3Vv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="m9W-xu-4pq"/>
                 <constraint firstItem="0qE-Uq-3Vv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="pFs-dh-Lv9"/>
                 <constraint firstItem="emd-Xj-0pM" firstAttribute="leading" secondItem="0qE-Uq-3Vv" secondAttribute="leading" id="s4y-xK-85B"/>
                 <constraint firstItem="m46-bk-gtm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="vfh-CJ-ued"/>

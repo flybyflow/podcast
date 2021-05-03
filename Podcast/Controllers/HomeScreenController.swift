@@ -6,14 +6,15 @@
 //
 
 import UIKit
+import AVKit
 
 class HomeScreenController: UIViewController {
-
+    
     var playerView: HomePagePlayerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         playerView = HomePagePlayerView.initFromNib()
         playerContainerView.addSubview(playerView)
         
@@ -22,15 +23,14 @@ class HomeScreenController: UIViewController {
         playerView.leadingAnchor.constraint(equalTo: playerContainerView.leadingAnchor).isActive = true
         playerView.trailingAnchor.constraint(equalTo: playerContainerView.trailingAnchor).isActive = true
         playerView.layer.cornerRadius = 16
-//        playerView.layer.borderColor = UIColor.gray.cgColor
-//        playerView.layer.borderWidth = 2
-//        playerView.layer.applySketchShadow(spread: 1.0)
+        //        playerView.layer.borderColor = UIColor.gray.cgColor
+        //        playerView.layer.borderWidth = 2
+        //        playerView.layer.applySketchShadow(spread: 1.0)
         playerView.translatesAutoresizingMaskIntoConstraints = false
         view.layoutIfNeeded()
         
+        playerView.addTarget(self, action: #selector(didTapHomePlayerView), for: .touchUpInside)
         
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,23 +39,22 @@ class HomeScreenController: UIViewController {
         
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-
-    @IBOutlet weak var playerContainerView: UIView!
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc private func didTapHomePlayerView() {
+        guard let audioPlayer = UIApplication.mainTabBarController()?.audioPlayerView else {return}
+        if audioPlayer.episode == nil {
+            audioPlayer.persistedProgress = UserDefaults.standard.cmtime(forKey: UserDefaults.currentTimeKey)
+            audioPlayer.episode = playerView.currentEpisode
+        }
+        audioPlayer.handleTapMaximize()
     }
-    */
-
+    
+    @IBOutlet weak var playerContainerView: UIControl!
+    
 }
