@@ -11,8 +11,9 @@ import AVKit
 class HomeScreenController: UIViewController {
     
     let cellIdentifier = "cell"
+    @IBOutlet weak var categoryContainerView: UIView!
     
-    var podcasts = [Podcast]()
+//    var podcasts = [Podcast]()
     var playerView: HomePagePlayerView!
     
     override func viewDidLoad() {
@@ -20,22 +21,15 @@ class HomeScreenController: UIViewController {
         
         configureHomePlayerView()
         
-        categoryTableView.delegate = self
-        categoryTableView.dataSource = self
+        let categoryView = HomeCategorySectionView(category: .comedy)
+        categoryView.translatesAutoresizingMaskIntoConstraints = false
+        categoryContainerView.addSubview(categoryView)
         
-        let nib = UINib(nibName: "PodcastCell", bundle: nil)
-        categoryTableView.register(nib, forCellReuseIdentifier: cellIdentifier)
-        
-        Api.shared.fetchPodcasts(with: "podcast", category: .comedy,
-                                 errorHandler: {
-                                    print("Networking Error")
-                                 },
-                                 completionHandler: { (podcasts) in
-                                    self.podcasts = podcasts
-                                    DispatchQueue.main.async {
-                                        self.categoryTableView.reloadData()
-                                    }
-                                 })
+        categoryView.topAnchor.constraint(equalTo: categoryContainerView.topAnchor).isActive = true
+        categoryView.bottomAnchor.constraint(equalTo: categoryContainerView.bottomAnchor).isActive = true
+        categoryView.leadingAnchor.constraint(equalTo: categoryContainerView.leadingAnchor).isActive = true
+        categoryView.trailingAnchor.constraint(equalTo: categoryContainerView.trailingAnchor).isActive = true
+        view.layoutIfNeeded()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,23 +72,4 @@ class HomeScreenController: UIViewController {
     }
     
     @IBOutlet weak var playerContainerView: UIControl!
-    @IBOutlet weak var categoryTableView: UITableView!
-}
-
-extension HomeScreenController : UITableViewDelegate,UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return podcasts.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? PodcastCell else {return UITableViewCell()}
-        
-        cell.podcast = podcasts[indexPath.row]
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 132
-    }
 }
