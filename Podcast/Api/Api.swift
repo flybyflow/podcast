@@ -15,10 +15,23 @@ class Api {
     
     let baseItunesSearchUrl = "https://itunes.apple.com/search"
     
-    func fetchPodcasts(with searchText: String, errorHandler: @escaping () -> Void, completionHandler: @escaping ([Podcast]) -> ()) {
+    enum Category: String {
+        case news = "1489"
+        case comedy = "1303"
+        case culture = "1324"
+        case health = "1512"
+        case sports = "1545"
+        case business = "1321"
+    }
+    
+    func fetchPodcasts(with searchText: String, category: Category?, errorHandler: @escaping () -> Void, completionHandler: @escaping ([Podcast]) -> ()) {
         
-        let parameters = ["term":searchText,
+        var parameters = ["term":searchText,
                           "media":"podcast"]
+        
+        if let categoryId = category?.rawValue {
+            parameters["category"] = categoryId
+        }
         
         AF.request(baseItunesSearchUrl,
                    method: .get,

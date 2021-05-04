@@ -71,7 +71,7 @@ class SearchNavController: UITableViewController, UISearchBarDelegate {
         
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            Api.shared.fetchPodcasts(with: searchText,
+            Api.shared.fetchPodcasts(with: searchText, category: nil,
                                      errorHandler: {
                                         DispatchQueue.main.async {
                                         self.displayNetworkingError()
