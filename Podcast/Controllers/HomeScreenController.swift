@@ -11,31 +11,53 @@ import AVKit
 class HomeScreenController: UIViewController {
     
     let cellIdentifier = "cell"
-    @IBOutlet weak var categoryContainerView: UIView!
+    let categoryHeigth: CGFloat = 240
     
-//    var podcasts = [Podcast]()
-    var playerView: HomePagePlayerView!
+    lazy var scrollView: UIScrollView = {
+        let v = UIScrollView()
+        self.view.addSubview(v)
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        v.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        v.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+        v.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        return v
+        }()
+    
+    lazy var playerView: HomePagePlayerView = {
+        let playerView = HomePagePlayerView.initFromNib()
+        playerView.layer.cornerRadius = 16
+        playerView.layer.applySketchShadow()
+        playerView.translatesAutoresizingMaskIntoConstraints = false
+        playerView.addTarget(self, action: #selector(didTapHomePlayerView), for: .touchUpInside)
+        return playerView
+    }()
+    
+    lazy var curentlyListeningLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Currently Listening"
+        label.font = label.font.withSize(24)
+        
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configureHomePlayerView()
-        
-        let categoryView = HomeCategorySectionView(category: .comedy)
-        categoryView.translatesAutoresizingMaskIntoConstraints = false
-        categoryContainerView.addSubview(categoryView)
-        
-        categoryView.topAnchor.constraint(equalTo: categoryContainerView.topAnchor).isActive = true
-        categoryView.bottomAnchor.constraint(equalTo: categoryContainerView.bottomAnchor).isActive = true
-        categoryView.leadingAnchor.constraint(equalTo: categoryContainerView.leadingAnchor).isActive = true
-        categoryView.trailingAnchor.constraint(equalTo: categoryContainerView.trailingAnchor).isActive = true
+        configureCategoryViews()
         view.layoutIfNeeded()
+        
+        self.scrollView.addSubview(curentlyListeningLabel)
+        curentlyListeningLabel.translatesAutoresizingMaskIntoConstraints = false
+        curentlyListeningLabel.bottomAnchor.constraint(equalTo: playerView.topAnchor, constant: -8).isActive = true
+        curentlyListeningLabel.leadingAnchor.constraint(equalTo: playerView.leadingAnchor, constant: 0).isActive = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        playerView.currentEpisode = UserDefaults.standard.fetchCurrentEpisode() 
-        
+        playerView.currentEpisode = UserDefaults.standard.fetchCurrentEpisode()
+    
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -45,23 +67,56 @@ class HomeScreenController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    fileprivate func configureHomePlayerView() {
-        playerView = HomePagePlayerView.initFromNib()
-        playerContainerView.addSubview(playerView)
-        playerView.topAnchor.constraint(equalTo: playerContainerView.topAnchor).isActive = true
-        playerView.bottomAnchor.constraint(equalTo: playerContainerView.bottomAnchor).isActive = true
-        playerView.leadingAnchor.constraint(equalTo: playerContainerView.leadingAnchor).isActive = true
-        playerView.trailingAnchor.constraint(equalTo: playerContainerView.trailingAnchor).isActive = true
-        playerView.layer.cornerRadius = 16
-        //        playerView.layer.borderColor = UIColor.gray.cgColor
-        //        playerView.layer.borderWidth = 2
-        //        playerView.layer.applySketchShadow(spread: 1.0)
-        playerView.translatesAutoresizingMaskIntoConstraints = false
-        view.layoutIfNeeded()
+    fileprivate func configureCategoryViews() {
         
-        playerView.addTarget(self, action: #selector(didTapHomePlayerView), for: .touchUpInside)
+        let comedyView = HomeCategorySectionView(category: .comedy)
+        comedyView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(comedyView)
+
+        comedyView.topAnchor.constraint(equalTo: playerView.bottomAnchor, constant: 8).isActive = true
+        comedyView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 8).isActive = true
+        comedyView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -8).isActive = true
+        comedyView.heightAnchor.constraint(equalToConstant: categoryHeigth).isActive = true
+
+        let newsView = HomeCategorySectionView(category: .health)
+        newsView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(newsView)
+
+        newsView.topAnchor.constraint(equalTo: comedyView.bottomAnchor).isActive = true
+        newsView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 8).isActive = true
+        newsView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -8).isActive = true
+        newsView.heightAnchor.constraint(equalToConstant: categoryHeigth).isActive = true
+        
+        let businessView = HomeCategorySectionView(category: .business)
+        businessView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(businessView)
+
+        businessView.topAnchor.constraint(equalTo: newsView.bottomAnchor).isActive = true
+        businessView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 8).isActive = true
+        businessView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -8).isActive = true
+        businessView.heightAnchor.constraint(equalToConstant: categoryHeigth).isActive = true
+        
+        let sportsView = HomeCategorySectionView(category: .sports)
+        sportsView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(sportsView)
+
+        sportsView.topAnchor.constraint(equalTo: businessView.bottomAnchor).isActive = true
+        sportsView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 8).isActive = true
+        sportsView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -8).isActive = true
+        sportsView.heightAnchor.constraint(equalToConstant: categoryHeigth).isActive = true
+        
+        sportsView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 8).isActive = true
     }
     
+    fileprivate func configureHomePlayerView() {
+        scrollView.addSubview(playerView)
+        playerView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 84).isActive = true
+        playerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,constant: 16).isActive = true
+        playerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,constant: -16).isActive = true
+        playerView.heightAnchor.constraint(equalToConstant: 176).isActive = true
+        playerView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -32).isActive = true
+    }
+
     @objc private func didTapHomePlayerView() {
         guard let audioPlayer = UIApplication.mainTabBarController()?.audioPlayerView else {return}
         if audioPlayer.episode == nil {
@@ -70,6 +125,4 @@ class HomeScreenController: UIViewController {
         }
         audioPlayer.handleTapMaximize()
     }
-    
-    @IBOutlet weak var playerContainerView: UIControl!
 }

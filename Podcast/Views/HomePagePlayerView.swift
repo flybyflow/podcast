@@ -74,7 +74,7 @@ class HomePagePlayerView: UIControl {
     
     private func setProgressView(currentTime: CMTime) {
         let currentSeconds = CGFloat(currentTime.seconds)
-        let totalSeconds = CGFloat(currentEpisode!.duration)
+        let totalSeconds = CGFloat(currentEpisode?.duration ?? currentTime.seconds)
         
         progressView.setProgress(currentSeconds/totalSeconds, animated: false)
     }

@@ -10,6 +10,7 @@
 		54447EE01CBE3F11AABF4B81 /* Pods_Podcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DB383A5E7A1039EC74611CA /* Pods_Podcast.framework */; };
 		CD04145126331BEE00A0635E /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04145026331BEE00A0635E /* NSNotification.swift */; };
 		CD1B6AE726419EF800355826 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1B6AE626419EF800355826 /* Category.swift */; };
+		CD1C33542643344D006D1979 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1C33532643344D006D1979 /* UIView.swift */; };
 		CD275DE3263B2FFA00313C80 /* MaskProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD275DE2263B2FFA00313C80 /* MaskProgressView.swift */; };
 		CD275E3D263C38EC00313C80 /* HomeScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD275E3B263C38EC00313C80 /* HomeScreenController.swift */; };
 		CD275E3E263C38EC00313C80 /* HomeScreenController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD275E3C263C38EC00313C80 /* HomeScreenController.xib */; };
@@ -54,6 +55,7 @@
 		9DB383A5E7A1039EC74611CA /* Pods_Podcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Podcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD04145026331BEE00A0635E /* NSNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
 		CD1B6AE626419EF800355826 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		CD1C33532643344D006D1979 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		CD275DE2263B2FFA00313C80 /* MaskProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskProgressView.swift; sourceTree = "<group>"; };
 		CD275E3B263C38EC00313C80 /* HomeScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenController.swift; sourceTree = "<group>"; };
 		CD275E3C263C38EC00313C80 /* HomeScreenController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeScreenController.xib; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		CDA82C3025CC57EA00546AAF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CD1C33532643344D006D1979 /* UIView.swift */,
 				CD275E53263C7D9500313C80 /* CALayer.swift */,
 				CD6E2A602630B5E5004EF5CA /* UserDefaults.swift */,
 				CDA3029825EC413B003E08A5 /* CMTime.swift */,
@@ -383,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD1C33542643344D006D1979 /* UIView.swift in Sources */,
 				CDCC48B725EDB8B9004CF392 /* NetworkManager.swift in Sources */,
 				CDAF2D0B2641739800402485 /* HomeCategoryView.swift in Sources */,
 				CD95933825C88D3500AC7F3B /* Api.swift in Sources */,

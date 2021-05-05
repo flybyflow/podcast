@@ -7,10 +7,9 @@
 
 import Foundation
 
-enum Category: String {
+enum Category: String, CaseIterable {
     case news
     case comedy
-    case culture
     case health
     case sports
     case business
@@ -19,7 +18,6 @@ enum Category: String {
         switch self {
         case .news : return "1489"
         case .comedy : return "1303"
-        case .culture : return "1324"
         case .health : return "1512"
         case .sports : return "1545"
         case .business : return "1321"

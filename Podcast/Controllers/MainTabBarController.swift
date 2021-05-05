@@ -15,10 +15,10 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         setupPlayerDetailsView()
                 
-        viewControllers = [generateControllers(name: "Search", with: SearchNavController()),
+        viewControllers = [generateControllers(name: "Home", with: HomeScreenController()),
                            generateControllers(name: "Favorites", with: FavoritesController(collectionViewLayout: UICollectionViewFlowLayout())),
                            generateControllers(name: "Downloads", with: DownloadsController()),
-                           generateControllers(name: "Home", with: HomeScreenController())]
+                           generateControllers(name: "Search", with: SearchNavController())]
     }
     
     let audioPlayerView = AudioPlayerView.initFromNib()

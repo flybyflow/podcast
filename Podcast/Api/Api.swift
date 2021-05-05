@@ -20,8 +20,8 @@ class Api {
         var parameters = ["term":searchText,
                           "media":"podcast"]
         
-        if let categoryId = category?.rawValue {
-            parameters["category"] = categoryId
+        if let categoryId = category?.id {
+            parameters["genreId"] = categoryId
         }
         
         if count != nil {
