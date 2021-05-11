@@ -29,11 +29,12 @@ class HomeScreenController: UIViewController {
         playerView.layer.cornerRadius = 16
         playerView.layer.applySketchShadow()
         playerView.translatesAutoresizingMaskIntoConstraints = false
+        playerView.clipsToBounds = true
         playerView.addTarget(self, action: #selector(didTapHomePlayerView), for: .touchUpInside)
         return playerView
     }()
     
-    lazy var curentlyListeningLabel: UILabel = {
+    lazy var currentlyListeningLabel: UILabel = {
         let label = UILabel()
         label.text = "Currently Listening"
         label.font = label.font.withSize(24)
@@ -41,23 +42,28 @@ class HomeScreenController: UIViewController {
         return label
     }()
     
+    fileprivate func configureCurrentlyListeningLabel() {
+        guard playerView.currentEpisode != nil else {return}
+        
+        self.scrollView.addSubview(currentlyListeningLabel)
+        currentlyListeningLabel.translatesAutoresizingMaskIntoConstraints = false
+        currentlyListeningLabel.bottomAnchor.constraint(equalTo: playerView.topAnchor, constant: -8).isActive = true
+        currentlyListeningLabel.leadingAnchor.constraint(equalTo: playerView.leadingAnchor, constant: 0).isActive = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        playerView.currentEpisode = UserDefaults.standard.fetchCurrentEpisode()
         configureHomePlayerView()
         configureCategoryViews()
+        configureCurrentlyListeningLabel()
         view.layoutIfNeeded()
-        
-        self.scrollView.addSubview(curentlyListeningLabel)
-        curentlyListeningLabel.translatesAutoresizingMaskIntoConstraints = false
-        curentlyListeningLabel.bottomAnchor.constraint(equalTo: playerView.topAnchor, constant: -8).isActive = true
-        curentlyListeningLabel.leadingAnchor.constraint(equalTo: playerView.leadingAnchor, constant: 0).isActive = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         playerView.currentEpisode = UserDefaults.standard.fetchCurrentEpisode()
-    
+
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -109,11 +115,13 @@ class HomeScreenController: UIViewController {
     }
     
     fileprivate func configureHomePlayerView() {
+        let height: CGFloat = playerView.currentEpisode == nil ? 0 : 176
+        
         scrollView.addSubview(playerView)
         playerView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 84).isActive = true
         playerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor,constant: 16).isActive = true
         playerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor,constant: -16).isActive = true
-        playerView.heightAnchor.constraint(equalToConstant: 176).isActive = true
+        playerView.heightAnchor.constraint(equalToConstant: height).isActive = true
         playerView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -32).isActive = true
     }
 
