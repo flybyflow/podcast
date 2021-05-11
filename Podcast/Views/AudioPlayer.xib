@@ -46,7 +46,6 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kA9-0r-auC">
                             <rect key="frame" x="64" y="23.666666666666671" width="38" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Favorites" translatesAutoresizingMaskIntoConstraints="NO" id="WKv-TH-oQQ">
@@ -72,7 +71,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="Np4-cd-hFS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kA9-0r-auC" secondAttribute="trailing" constant="8" id="1gV-h7-TOf"/>
                         <constraint firstItem="Np4-cd-hFS" firstAttribute="top" secondItem="b5L-MF-695" secondAttribute="bottom" constant="4" id="AKe-kt-i2F"/>
@@ -101,8 +100,8 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qey-kk-H7Y">
                             <rect key="frame" x="176" y="8" width="23.333333333333343" height="22"/>
                             <state key="normal">
-                                <color key="titleColor" red="0.25882352941176467" green="0.24705882352941178" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <imageReference key="image" image="chevron.compact.down" catalog="system" symbolScale="large" renderingMode="original"/>
+                                <color key="titleColor" systemColor="labelColor"/>
+                                <imageReference key="image" image="chevron.compact.down" catalog="system" symbolScale="large" renderingMode="template"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="semibold"/>
                             </state>
                             <connections>
@@ -119,7 +118,6 @@
                                 <constraint firstAttribute="height" constant="48" id="7U0-G3-sGu"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                            <color key="textColor" red="0.25882352941176467" green="0.24705882352941178" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A really long author name because I cant do my naming properly" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yeh-0H-T7n">
@@ -128,7 +126,7 @@
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="mf3-3Y-x3z"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" red="0.63921568627450975" green="0.63137254901960782" blue="0.68627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" systemColor="secondaryLabelColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.34999999999999998" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Audio Wave" translatesAutoresizingMaskIntoConstraints="NO" id="Jhi-73-AMb">
@@ -144,7 +142,7 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="70" id="o9n-X7-n4U"/>
                                     </constraints>
-                                    <color key="minimumTrackTintColor" red="1" green="1" blue="1" alpha="0.59144024476228851" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="minimumTrackTintColor" systemColor="systemFillColor"/>
                                     <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="thumbTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <connections>
@@ -342,8 +340,17 @@
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

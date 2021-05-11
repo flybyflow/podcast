@@ -55,8 +55,8 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
     }
     
     private func setupCollectionView() {
-        collectionViewLayout.collectionView?.backgroundColor = .white
-        view.backgroundColor = .white
+        collectionViewLayout.collectionView?.backgroundColor = .systemBackground
+        view.backgroundColor = .systemBackground
 
         title = "Favorites"
         collectionView!.register(FavoritePodcastCell.self, forCellWithReuseIdentifier: reuseIdentifier)
